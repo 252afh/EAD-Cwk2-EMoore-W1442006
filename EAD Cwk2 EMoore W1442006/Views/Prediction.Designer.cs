@@ -1,6 +1,6 @@
-﻿namespace EAD_Cwk1_EMoore_W1442006
+﻿namespace EAD_Cwk2_EMoore_W1442006.Views
 {
-    partial class Form1
+    partial class Prediction
     {
         /// <summary>
         /// Required designer variable.
@@ -28,13 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.BackButton = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // BackButton
+            // 
+            this.BackButton.Location = new System.Drawing.Point(13, 13);
+            this.BackButton.Name = "BackButton";
+            this.BackButton.Size = new System.Drawing.Size(81, 23);
+            this.BackButton.TabIndex = 0;
+            this.BackButton.Text = "Back to menu";
+            this.BackButton.UseVisualStyleBackColor = true;
+            this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
+            // 
+            // Prediction
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            this.Controls.Add(this.BackButton);
+            this.Name = "Prediction";
+            this.Text = "Prediction";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Button BackButton;
     }
 }
-

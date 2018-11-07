@@ -8,13 +8,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace EAD_Cwk1_EMoore_W1442006
+namespace EAD_Cwk2_EMoore_W1442006.Views
 {
-    public partial class Form1 : Form
+    public partial class PayersEdit : Form
     {
-        public Form1()
+        public PayersEdit()
         {
             InitializeComponent();
+        }
+
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+            this.Owner.Show();
+            this.Close();
         }
     }
 }
