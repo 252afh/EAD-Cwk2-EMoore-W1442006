@@ -1,16 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using EAD_Cwk2_EMoore_W1442006.Helpers;
-using EAD_Cwk2_EMoore_W1442006.Models;
 
 namespace EAD_Cwk2_EMoore_W1442006.Views
 {
