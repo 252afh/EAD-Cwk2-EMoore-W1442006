@@ -9,7 +9,6 @@ using System.Xml.Serialization;
 namespace EAD_Cwk2_EMoore_W1442006.Models
 {
     [Serializable()]
-    [XmlRoot("payer")]
     public class Contact
     {
         [XmlAttribute("Id")]

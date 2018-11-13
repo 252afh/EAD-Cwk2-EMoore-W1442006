@@ -69,7 +69,7 @@
             // nameLabel
             // 
             this.nameLabel.AutoSize = true;
-            this.nameLabel.Location = new System.Drawing.Point(147, 83);
+            this.nameLabel.Location = new System.Drawing.Point(256, 173);
             this.nameLabel.Name = "nameLabel";
             this.nameLabel.Size = new System.Drawing.Size(38, 13);
             this.nameLabel.TabIndex = 6;
@@ -77,14 +77,14 @@
             // 
             // NameText
             // 
-            this.NameText.Location = new System.Drawing.Point(224, 80);
+            this.NameText.Location = new System.Drawing.Point(333, 170);
             this.NameText.Name = "NameText";
             this.NameText.Size = new System.Drawing.Size(100, 20);
             this.NameText.TabIndex = 7;
             // 
             // PaymentTypeText
             // 
-            this.PaymentTypeText.Location = new System.Drawing.Point(224, 107);
+            this.PaymentTypeText.Location = new System.Drawing.Point(333, 197);
             this.PaymentTypeText.Name = "PaymentTypeText";
             this.PaymentTypeText.Size = new System.Drawing.Size(100, 20);
             this.PaymentTypeText.TabIndex = 8;
@@ -92,7 +92,7 @@
             // PaymentTypeLabel
             // 
             this.PaymentTypeLabel.AutoSize = true;
-            this.PaymentTypeLabel.Location = new System.Drawing.Point(147, 110);
+            this.PaymentTypeLabel.Location = new System.Drawing.Point(256, 200);
             this.PaymentTypeLabel.Name = "PaymentTypeLabel";
             this.PaymentTypeLabel.Size = new System.Drawing.Size(74, 13);
             this.PaymentTypeLabel.TabIndex = 9;

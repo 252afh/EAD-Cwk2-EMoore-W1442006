@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using EAD_Cwk2_EMoore_W1442006.Helpers;
 using EAD_Cwk2_EMoore_W1442006.Models;
 
 namespace EAD_Cwk2_EMoore_W1442006.Views
@@ -68,6 +69,26 @@ namespace EAD_Cwk2_EMoore_W1442006.Views
         {
             this.IncomeAddView = null;
             this.Show();
+        }
+
+        private void IncomeView_VisibleChanged(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
+
+            foreach (var income in ListAccessHelper.IncomeList)
+            {
+                this.listView1.Items.Add(new ListViewItem(new[]
+                {
+                    "£" + income.Amount.ToString(),
+                    income.Payer.Name,
+                    income.Payer.PaymentType,
+                    income.IsRecurring? "Yes" : "No",
+                    income.InitialPaidDate.ToShortDateString(),
+                    income.Ref,
+                    income.IsRecurring ? income.Interval.ToString() + " days" : "-",
+                    income.IsRecurring ? income.LastPaidDate.ToShortDateString() : "-"
+                }));
+            }
         }
     }
 }

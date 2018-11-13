@@ -29,6 +29,13 @@
         private void InitializeComponent()
         {
             this.ExpenseListView = new System.Windows.Forms.ListView();
+            this.refColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.payeeColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.amountColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.recurringColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.intervalColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.initialColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lastPaymentColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.BackButton = new System.Windows.Forms.Button();
             this.EditButton = new System.Windows.Forms.Button();
             this.AddButton = new System.Windows.Forms.Button();
@@ -37,11 +44,56 @@
             // ExpenseListView
             // 
             this.ExpenseListView.CheckBoxes = true;
+            this.ExpenseListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.payeeColumn,
+            this.refColumn,
+            this.amountColumn,
+            this.recurringColumn,
+            this.intervalColumn,
+            this.initialColumn,
+            this.lastPaymentColumn});
+            this.ExpenseListView.GridLines = true;
             this.ExpenseListView.Location = new System.Drawing.Point(38, 47);
             this.ExpenseListView.Name = "ExpenseListView";
             this.ExpenseListView.Size = new System.Drawing.Size(730, 344);
             this.ExpenseListView.TabIndex = 0;
             this.ExpenseListView.UseCompatibleStateImageBehavior = false;
+            this.ExpenseListView.View = System.Windows.Forms.View.Details;
+            // 
+            // refColumn
+            // 
+            this.refColumn.Text = "Reference";
+            this.refColumn.Width = 189;
+            // 
+            // payeeColumn
+            // 
+            this.payeeColumn.Text = "Payee";
+            this.payeeColumn.Width = 96;
+            // 
+            // amountColumn
+            // 
+            this.amountColumn.Text = "Amount";
+            this.amountColumn.Width = 85;
+            // 
+            // recurringColumn
+            // 
+            this.recurringColumn.Text = "Recurring";
+            this.recurringColumn.Width = 59;
+            // 
+            // intervalColumn
+            // 
+            this.intervalColumn.Text = "Interval";
+            this.intervalColumn.Width = 68;
+            // 
+            // initialColumn
+            // 
+            this.initialColumn.Text = "Initial Payment";
+            this.initialColumn.Width = 112;
+            // 
+            // lastPaymentColumn
+            // 
+            this.lastPaymentColumn.Text = "Last Payment";
+            this.lastPaymentColumn.Width = 116;
             // 
             // BackButton
             // 
@@ -84,6 +136,7 @@
             this.Controls.Add(this.ExpenseListView);
             this.Name = "ExpenseView";
             this.Text = "Expense";
+            this.VisibleChanged += new System.EventHandler(this.ExpenseView_VisibleChanged);
             this.ResumeLayout(false);
 
         }
@@ -94,5 +147,12 @@
         private System.Windows.Forms.Button BackButton;
         private System.Windows.Forms.Button EditButton;
         private System.Windows.Forms.Button AddButton;
+        private System.Windows.Forms.ColumnHeader refColumn;
+        private System.Windows.Forms.ColumnHeader payeeColumn;
+        private System.Windows.Forms.ColumnHeader amountColumn;
+        private System.Windows.Forms.ColumnHeader recurringColumn;
+        private System.Windows.Forms.ColumnHeader intervalColumn;
+        private System.Windows.Forms.ColumnHeader initialColumn;
+        private System.Windows.Forms.ColumnHeader lastPaymentColumn;
     }
 }

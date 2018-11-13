@@ -29,27 +29,31 @@
         private void InitializeComponent()
         {
             this.listView1 = new System.Windows.Forms.ListView();
-            this.BackButton = new System.Windows.Forms.Button();
-            this.EditIncomeButton = new System.Windows.Forms.Button();
-            this.AddIncomeButton = new System.Windows.Forms.Button();
+            this.Reference = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Amount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PayerName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PayerType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Recurring = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SetUpDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Reference = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.BackButton = new System.Windows.Forms.Button();
+            this.EditIncomeButton = new System.Windows.Forms.Button();
+            this.AddIncomeButton = new System.Windows.Forms.Button();
+            this.paymentColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lastPaidColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // listView1
             // 
             this.listView1.CheckBoxes = true;
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.Reference,
             this.Amount,
             this.PayerName,
             this.PayerType,
             this.Recurring,
-            this.SetUpDate});
+            this.SetUpDate,
+            this.Reference,
+            this.paymentColumn,
+            this.lastPaidColumn});
             this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(36, 42);
             this.listView1.Name = "listView1";
@@ -57,6 +61,42 @@
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // Reference
+            // 
+            this.Reference.DisplayIndex = 5;
+            this.Reference.Text = "PaymentReference";
+            this.Reference.Width = 172;
+            // 
+            // Amount
+            // 
+            this.Amount.DisplayIndex = 0;
+            this.Amount.Text = "Amount";
+            this.Amount.Width = 68;
+            // 
+            // PayerName
+            // 
+            this.PayerName.DisplayIndex = 1;
+            this.PayerName.Text = "Payer name";
+            this.PayerName.Width = 93;
+            // 
+            // PayerType
+            // 
+            this.PayerType.DisplayIndex = 2;
+            this.PayerType.Text = "Type";
+            this.PayerType.Width = 64;
+            // 
+            // Recurring
+            // 
+            this.Recurring.DisplayIndex = 3;
+            this.Recurring.Text = "Recurring";
+            this.Recurring.Width = 65;
+            // 
+            // SetUpDate
+            // 
+            this.SetUpDate.DisplayIndex = 4;
+            this.SetUpDate.Text = "Set-up date";
+            this.SetUpDate.Width = 118;
             // 
             // BackButton
             // 
@@ -88,41 +128,15 @@
             this.AddIncomeButton.UseVisualStyleBackColor = true;
             this.AddIncomeButton.Click += new System.EventHandler(this.AddIncomeButton_Click);
             // 
-            // Amount
+            // paymentColumn
             // 
-            this.Amount.DisplayIndex = 0;
-            this.Amount.Text = "Amount";
-            this.Amount.Width = 68;
+            this.paymentColumn.Text = "Interval";
+            this.paymentColumn.Width = 66;
             // 
-            // PayerName
+            // lastPaidColumn
             // 
-            this.PayerName.DisplayIndex = 1;
-            this.PayerName.Text = "Payer name";
-            this.PayerName.Width = 93;
-            // 
-            // PayerType
-            // 
-            this.PayerType.DisplayIndex = 2;
-            this.PayerType.Text = "Type";
-            this.PayerType.Width = 112;
-            // 
-            // Recurring
-            // 
-            this.Recurring.DisplayIndex = 3;
-            this.Recurring.Text = "Recurring";
-            this.Recurring.Width = 65;
-            // 
-            // SetUpDate
-            // 
-            this.SetUpDate.DisplayIndex = 4;
-            this.SetUpDate.Text = "Set-up date";
-            this.SetUpDate.Width = 118;
-            // 
-            // Reference
-            // 
-            this.Reference.DisplayIndex = 5;
-            this.Reference.Text = "PaymentReference";
-            this.Reference.Width = 269;
+            this.lastPaidColumn.Text = "Last Payment";
+            this.lastPaidColumn.Width = 79;
             // 
             // IncomeView
             // 
@@ -135,6 +149,7 @@
             this.Controls.Add(this.listView1);
             this.Name = "IncomeView";
             this.Text = "Income";
+            this.VisibleChanged += new System.EventHandler(this.IncomeView_VisibleChanged);
             this.ResumeLayout(false);
 
         }
@@ -151,5 +166,7 @@
         private System.Windows.Forms.ColumnHeader PayerType;
         private System.Windows.Forms.ColumnHeader Recurring;
         private System.Windows.Forms.ColumnHeader SetUpDate;
+        private System.Windows.Forms.ColumnHeader paymentColumn;
+        private System.Windows.Forms.ColumnHeader lastPaidColumn;
     }
 }

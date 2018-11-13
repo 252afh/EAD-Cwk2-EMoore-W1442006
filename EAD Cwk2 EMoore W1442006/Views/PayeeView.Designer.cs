@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.payeeListView = new System.Windows.Forms.ListView();
-            this.backButton = new System.Windows.Forms.Button();
-            this.editPayee = new System.Windows.Forms.Button();
-            this.addPayee = new System.Windows.Forms.Button();
             this.PayerName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PayerAddress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PayerAccNumber = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PayerSortCode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.backButton = new System.Windows.Forms.Button();
+            this.editPayee = new System.Windows.Forms.Button();
+            this.addPayee = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // payeeListView
@@ -53,6 +53,26 @@
             this.payeeListView.TabIndex = 0;
             this.payeeListView.UseCompatibleStateImageBehavior = false;
             this.payeeListView.View = System.Windows.Forms.View.Details;
+            // 
+            // PayerName
+            // 
+            this.PayerName.Text = "Name";
+            this.PayerName.Width = 147;
+            // 
+            // PayerAddress
+            // 
+            this.PayerAddress.Text = "Address";
+            this.PayerAddress.Width = 300;
+            // 
+            // PayerAccNumber
+            // 
+            this.PayerAccNumber.Text = "Account Number";
+            this.PayerAccNumber.Width = 150;
+            // 
+            // PayerSortCode
+            // 
+            this.PayerSortCode.Text = "Sort Code";
+            this.PayerSortCode.Width = 100;
             // 
             // backButton
             // 
@@ -84,26 +104,6 @@
             this.addPayee.UseVisualStyleBackColor = true;
             this.addPayee.Click += new System.EventHandler(this.AddPayee_Click);
             // 
-            // PayerName
-            // 
-            this.PayerName.Text = "Name";
-            this.PayerName.Width = 147;
-            // 
-            // PayerAddress
-            // 
-            this.PayerAddress.Text = "Address";
-            this.PayerAddress.Width = 300;
-            // 
-            // PayerAccNumber
-            // 
-            this.PayerAccNumber.Text = "Account Number";
-            this.PayerAccNumber.Width = 150;
-            // 
-            // PayerSortCode
-            // 
-            this.PayerSortCode.Text = "Sort Code";
-            this.PayerSortCode.Width = 100;
-            // 
             // PayeeViewForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -115,6 +115,7 @@
             this.Controls.Add(this.payeeListView);
             this.Name = "PayeeViewForm";
             this.Text = "Payee";
+            this.VisibleChanged += new System.EventHandler(this.PayeeViewForm_VisibleChanged);
             this.ResumeLayout(false);
 
         }

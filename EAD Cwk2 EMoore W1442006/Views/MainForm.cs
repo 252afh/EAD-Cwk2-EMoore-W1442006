@@ -49,6 +49,7 @@ namespace EAD_Cwk2_EMoore_W1442006.Views
         public MainMenuForm()
         {
             InitializeComponent();
+            this.balanceBox.Text = "£" + ListAccessHelper.Balance.ToString();
         }
 
         private void ViewPayeeButton_Click(object sender, EventArgs e)
@@ -172,7 +173,8 @@ namespace EAD_Cwk2_EMoore_W1442006.Views
                         new XAttribute("Id", payee.Id),
                         new XAttribute("Name", payee.Name),
                         new XAttribute("AccNumber", payee.AccNumber),
-                        new XAttribute("SortCode", payee.AccNumber))));
+                        new XAttribute("SortCode", payee.AccNumber),
+                        new XAttribute("Address", payee.Address))));
 
             var incomes = new XElement("Incomes", ListAccessHelper.IncomeList.Select(income =>
                 new XElement("income",
@@ -181,7 +183,7 @@ namespace EAD_Cwk2_EMoore_W1442006.Views
                     new XAttribute("InitialDate", income.InitialPaidDate),
                     new XAttribute("Interval", income.Interval),
                     new XAttribute("IsRecurring", income.IsRecurring),
-                    new XAttribute("LastPaidDate", income.LastPayedDate),
+                    new XAttribute("LastPaidDate", income.LastPaidDate),
                     new XAttribute("Reference", income.Ref),
                     new XAttribute("Payer", income.Payer.Id))));
 
@@ -192,7 +194,7 @@ namespace EAD_Cwk2_EMoore_W1442006.Views
                     new XAttribute("InitialDate", expense.InitialPaidDate),
                     new XAttribute("Interval", expense.Interval),
                     new XAttribute("IsRecurring", expense.IsRecurring),
-                    new XAttribute("LastPaidDate", expense.LastPayedDate),
+                    new XAttribute("LastPaidDate", expense.LastPaidDate),
                     new XAttribute("Reference", expense.Ref),
                     new XAttribute("Payer", expense.Payee.Id))));
 
