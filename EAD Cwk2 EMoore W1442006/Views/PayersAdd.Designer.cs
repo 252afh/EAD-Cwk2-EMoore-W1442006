@@ -42,7 +42,7 @@
             this.SaveAndNewButton.Location = new System.Drawing.Point(12, 71);
             this.SaveAndNewButton.Name = "SaveAndNewButton";
             this.SaveAndNewButton.Size = new System.Drawing.Size(89, 23);
-            this.SaveAndNewButton.TabIndex = 5;
+            this.SaveAndNewButton.TabIndex = 4;
             this.SaveAndNewButton.Text = "Save and new";
             this.SaveAndNewButton.UseVisualStyleBackColor = true;
             // 
@@ -51,25 +51,23 @@
             this.SaveAndBackButton.Location = new System.Drawing.Point(11, 41);
             this.SaveAndBackButton.Name = "SaveAndBackButton";
             this.SaveAndBackButton.Size = new System.Drawing.Size(90, 23);
-            this.SaveAndBackButton.TabIndex = 4;
+            this.SaveAndBackButton.TabIndex = 3;
             this.SaveAndBackButton.Text = "Save and back";
             this.SaveAndBackButton.UseVisualStyleBackColor = true;
-            this.SaveAndBackButton.Click += new System.EventHandler(this.SaveAndBackButton_Click);
             // 
             // CancelButton
             // 
             this.CancelButton.Location = new System.Drawing.Point(12, 12);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(89, 23);
-            this.CancelButton.TabIndex = 3;
+            this.CancelButton.TabIndex = 2;
             this.CancelButton.Text = "Cancel";
             this.CancelButton.UseVisualStyleBackColor = true;
-            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // nameLabel
             // 
             this.nameLabel.AutoSize = true;
-            this.nameLabel.Location = new System.Drawing.Point(256, 173);
+            this.nameLabel.Location = new System.Drawing.Point(289, 173);
             this.nameLabel.Name = "nameLabel";
             this.nameLabel.Size = new System.Drawing.Size(38, 13);
             this.nameLabel.TabIndex = 6;
@@ -80,14 +78,14 @@
             this.NameText.Location = new System.Drawing.Point(333, 170);
             this.NameText.Name = "NameText";
             this.NameText.Size = new System.Drawing.Size(100, 20);
-            this.NameText.TabIndex = 7;
+            this.NameText.TabIndex = 0;
             // 
             // PaymentTypeText
             // 
             this.PaymentTypeText.Location = new System.Drawing.Point(333, 197);
             this.PaymentTypeText.Name = "PaymentTypeText";
             this.PaymentTypeText.Size = new System.Drawing.Size(100, 20);
-            this.PaymentTypeText.TabIndex = 8;
+            this.PaymentTypeText.TabIndex = 1;
             // 
             // PaymentTypeLabel
             // 
@@ -123,8 +121,8 @@
         private System.Windows.Forms.Button SaveAndBackButton;
         private System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.Label nameLabel;
-        private System.Windows.Forms.TextBox NameText;
-        private System.Windows.Forms.TextBox PaymentTypeText;
         private System.Windows.Forms.Label PaymentTypeLabel;
+        public System.Windows.Forms.TextBox NameText;
+        public System.Windows.Forms.TextBox PaymentTypeText;
     }
 }

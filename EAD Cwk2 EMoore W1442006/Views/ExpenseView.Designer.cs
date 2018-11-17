@@ -29,8 +29,9 @@
         private void InitializeComponent()
         {
             this.ExpenseListView = new System.Windows.Forms.ListView();
-            this.refColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ExpenseId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.payeeColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.refColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.amountColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.recurringColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.intervalColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -45,6 +46,7 @@
             // 
             this.ExpenseListView.CheckBoxes = true;
             this.ExpenseListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.ExpenseId,
             this.payeeColumn,
             this.refColumn,
             this.amountColumn,
@@ -52,23 +54,30 @@
             this.intervalColumn,
             this.initialColumn,
             this.lastPaymentColumn});
+            this.ExpenseListView.FullRowSelect = true;
             this.ExpenseListView.GridLines = true;
             this.ExpenseListView.Location = new System.Drawing.Point(38, 47);
+            this.ExpenseListView.MultiSelect = false;
             this.ExpenseListView.Name = "ExpenseListView";
             this.ExpenseListView.Size = new System.Drawing.Size(730, 344);
             this.ExpenseListView.TabIndex = 0;
             this.ExpenseListView.UseCompatibleStateImageBehavior = false;
             this.ExpenseListView.View = System.Windows.Forms.View.Details;
             // 
-            // refColumn
+            // ExpenseId
             // 
-            this.refColumn.Text = "Reference";
-            this.refColumn.Width = 189;
+            this.ExpenseId.Text = "Id";
+            this.ExpenseId.Width = 0;
             // 
             // payeeColumn
             // 
             this.payeeColumn.Text = "Payee";
             this.payeeColumn.Width = 96;
+            // 
+            // refColumn
+            // 
+            this.refColumn.Text = "Reference";
+            this.refColumn.Width = 189;
             // 
             // amountColumn
             // 
@@ -100,30 +109,27 @@
             this.BackButton.Location = new System.Drawing.Point(38, 18);
             this.BackButton.Name = "BackButton";
             this.BackButton.Size = new System.Drawing.Size(84, 23);
-            this.BackButton.TabIndex = 1;
+            this.BackButton.TabIndex = 0;
             this.BackButton.Text = "Back to menu";
             this.BackButton.UseVisualStyleBackColor = true;
-            this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
             // 
             // EditButton
             // 
             this.EditButton.Location = new System.Drawing.Point(38, 397);
             this.EditButton.Name = "EditButton";
             this.EditButton.Size = new System.Drawing.Size(84, 23);
-            this.EditButton.TabIndex = 2;
+            this.EditButton.TabIndex = 1;
             this.EditButton.Text = "Edit expense";
             this.EditButton.UseVisualStyleBackColor = true;
-            this.EditButton.Click += new System.EventHandler(this.EditButton_Click);
             // 
             // AddButton
             // 
             this.AddButton.Location = new System.Drawing.Point(688, 397);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(80, 23);
-            this.AddButton.TabIndex = 3;
+            this.AddButton.TabIndex = 2;
             this.AddButton.Text = "Add expense";
             this.AddButton.UseVisualStyleBackColor = true;
-            this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
             // ExpenseView
             // 
@@ -136,14 +142,11 @@
             this.Controls.Add(this.ExpenseListView);
             this.Name = "ExpenseView";
             this.Text = "Expense";
-            this.VisibleChanged += new System.EventHandler(this.ExpenseView_VisibleChanged);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.ListView ExpenseListView;
         private System.Windows.Forms.Button BackButton;
         private System.Windows.Forms.Button EditButton;
         private System.Windows.Forms.Button AddButton;
@@ -154,5 +157,7 @@
         private System.Windows.Forms.ColumnHeader intervalColumn;
         private System.Windows.Forms.ColumnHeader initialColumn;
         private System.Windows.Forms.ColumnHeader lastPaymentColumn;
+        private System.Windows.Forms.ColumnHeader ExpenseId;
+        public System.Windows.Forms.ListView ExpenseListView;
     }
 }

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.payeeListView = new System.Windows.Forms.ListView();
+            this.PayeeId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PayerName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PayerAddress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PayerAccNumber = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -42,17 +43,25 @@
             // 
             this.payeeListView.CheckBoxes = true;
             this.payeeListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.PayeeId,
             this.PayerName,
             this.PayerAddress,
             this.PayerAccNumber,
             this.PayerSortCode});
+            this.payeeListView.FullRowSelect = true;
             this.payeeListView.GridLines = true;
             this.payeeListView.Location = new System.Drawing.Point(56, 42);
+            this.payeeListView.MultiSelect = false;
             this.payeeListView.Name = "payeeListView";
             this.payeeListView.Size = new System.Drawing.Size(702, 362);
             this.payeeListView.TabIndex = 0;
             this.payeeListView.UseCompatibleStateImageBehavior = false;
             this.payeeListView.View = System.Windows.Forms.View.Details;
+            // 
+            // PayeeId
+            // 
+            this.PayeeId.Text = "Id";
+            this.PayeeId.Width = 0;
             // 
             // PayerName
             // 
@@ -79,30 +88,27 @@
             this.backButton.Location = new System.Drawing.Point(56, 12);
             this.backButton.Name = "backButton";
             this.backButton.Size = new System.Drawing.Size(83, 23);
-            this.backButton.TabIndex = 1;
+            this.backButton.TabIndex = 0;
             this.backButton.Text = "Back to menu";
             this.backButton.UseVisualStyleBackColor = true;
-            this.backButton.Click += new System.EventHandler(this.BackButton_Click);
             // 
             // editPayee
             // 
             this.editPayee.Location = new System.Drawing.Point(56, 415);
             this.editPayee.Name = "editPayee";
             this.editPayee.Size = new System.Drawing.Size(75, 23);
-            this.editPayee.TabIndex = 2;
+            this.editPayee.TabIndex = 1;
             this.editPayee.Text = "Edit payee";
             this.editPayee.UseVisualStyleBackColor = true;
-            this.editPayee.Click += new System.EventHandler(this.EditPayee_Click);
             // 
             // addPayee
             // 
             this.addPayee.Location = new System.Drawing.Point(683, 415);
             this.addPayee.Name = "addPayee";
             this.addPayee.Size = new System.Drawing.Size(75, 23);
-            this.addPayee.TabIndex = 3;
+            this.addPayee.TabIndex = 2;
             this.addPayee.Text = "Add payee";
             this.addPayee.UseVisualStyleBackColor = true;
-            this.addPayee.Click += new System.EventHandler(this.AddPayee_Click);
             // 
             // PayeeViewForm
             // 
@@ -115,14 +121,11 @@
             this.Controls.Add(this.payeeListView);
             this.Name = "PayeeViewForm";
             this.Text = "Payee";
-            this.VisibleChanged += new System.EventHandler(this.PayeeViewForm_VisibleChanged);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.ListView payeeListView;
         private System.Windows.Forms.Button backButton;
         private System.Windows.Forms.Button editPayee;
         private System.Windows.Forms.Button addPayee;
@@ -130,5 +133,7 @@
         private System.Windows.Forms.ColumnHeader PayerAddress;
         private System.Windows.Forms.ColumnHeader PayerAccNumber;
         private System.Windows.Forms.ColumnHeader PayerSortCode;
+        private System.Windows.Forms.ColumnHeader PayeeId;
+        public System.Windows.Forms.ListView payeeListView;
     }
 }

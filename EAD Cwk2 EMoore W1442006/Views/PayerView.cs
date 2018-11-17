@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using EAD_Cwk2_EMoore_W1442006.Controllers;
 using EAD_Cwk2_EMoore_W1442006.Helpers;
 
 namespace EAD_Cwk2_EMoore_W1442006.Views
@@ -19,58 +20,10 @@ namespace EAD_Cwk2_EMoore_W1442006.Views
         public Payer()
         {
             InitializeComponent();
-        }
-
-        private void BackButton_Click(object sender, EventArgs e)
-        {
-            this.Owner.Show();
-            this.Close();
-        }
-
-        private void EditPayerButton_Click(object sender, EventArgs e)
-        {
-            if (this.PayerEditView == null)
-            {
-                this.PayerEditView = new PayersEdit();
-                this.PayerEditView.FormClosed += this.PayerEditViewOnFormClosed;
-            }
-
-            this.PayerEditView.Show(this);
-            this.Hide();
-        }
-
-        private void PayerEditViewOnFormClosed(object sender, FormClosedEventArgs e)
-        {
-            this.PayerEditView = null;
-            this.Show();
-        }
-
-        private void AddPayerButton_Click(object sender, EventArgs e)
-        {
-            if (this.PayerAddView == null)
-            {
-                this.PayerAddView = new PayersAdd();
-                this.PayerAddView.FormClosed += PayerAddViewOnFormClosed;
-            }
-
-            this.PayerAddView.Show(this);
-            this.Hide();
-        }
-
-        private void PayerAddViewOnFormClosed(object sender, FormClosedEventArgs e)
-        {
-            this.PayerAddView = null;
-            this.Show();
-        }
-
-        private void Payer_VisibleChanged(object sender, EventArgs e)
-        {
-            PayerListView.Items.Clear();
-
-            foreach (var payer in ListAccessHelper.PayerList)
-            {
-                PayerListView.Items.Add(new ListViewItem(new[] { payer.Id.ToString(), payer.Name, payer.PaymentType }));
-            }
+            this.BackButton.Click += PayerController.ViewBackButton;
+            this.EditPayerButton.Click += PayerController.EditPayerClicked;
+            this.AddPayerButton.Click += PayerController.AddPayerClicked;
+            this.VisibleChanged += PayerController.ViewVisibleChanged;
         }
     }
 }

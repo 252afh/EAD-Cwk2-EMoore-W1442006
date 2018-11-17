@@ -50,10 +50,9 @@
             this.BackButton.Location = new System.Drawing.Point(13, 13);
             this.BackButton.Name = "BackButton";
             this.BackButton.Size = new System.Drawing.Size(81, 23);
-            this.BackButton.TabIndex = 0;
+            this.BackButton.TabIndex = 1;
             this.BackButton.Text = "Back to menu";
             this.BackButton.UseVisualStyleBackColor = true;
-            this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
             // 
             // PredictionLabel
             // 
@@ -70,8 +69,7 @@
             this.PredictionDatePicker.Location = new System.Drawing.Point(472, 16);
             this.PredictionDatePicker.Name = "PredictionDatePicker";
             this.PredictionDatePicker.Size = new System.Drawing.Size(200, 20);
-            this.PredictionDatePicker.TabIndex = 2;
-            this.PredictionDatePicker.ValueChanged += new System.EventHandler(this.PredictionDatePicker_ValueChanged);
+            this.PredictionDatePicker.TabIndex = 0;
             // 
             // DaysToLabel
             // 
@@ -89,38 +87,47 @@
             this.DaysToPredictionText.Name = "DaysToPredictionText";
             this.DaysToPredictionText.Size = new System.Drawing.Size(100, 20);
             this.DaysToPredictionText.TabIndex = 4;
+            this.DaysToPredictionText.TabStop = false;
             this.DaysToPredictionText.Text = "0";
             // 
             // OneOffIncomeText
             // 
+            this.OneOffIncomeText.Enabled = false;
             this.OneOffIncomeText.Location = new System.Drawing.Point(355, 155);
             this.OneOffIncomeText.Name = "OneOffIncomeText";
             this.OneOffIncomeText.Size = new System.Drawing.Size(100, 20);
             this.OneOffIncomeText.TabIndex = 5;
+            this.OneOffIncomeText.TabStop = false;
             this.OneOffIncomeText.Text = "0";
             // 
             // RecurringIncomeText
             // 
+            this.RecurringIncomeText.Enabled = false;
             this.RecurringIncomeText.Location = new System.Drawing.Point(355, 194);
             this.RecurringIncomeText.Name = "RecurringIncomeText";
             this.RecurringIncomeText.Size = new System.Drawing.Size(100, 20);
             this.RecurringIncomeText.TabIndex = 6;
+            this.RecurringIncomeText.TabStop = false;
             this.RecurringIncomeText.Text = "0";
             // 
             // OneOffExpensesText
             // 
+            this.OneOffExpensesText.Enabled = false;
             this.OneOffExpensesText.Location = new System.Drawing.Point(355, 235);
             this.OneOffExpensesText.Name = "OneOffExpensesText";
             this.OneOffExpensesText.Size = new System.Drawing.Size(100, 20);
             this.OneOffExpensesText.TabIndex = 7;
+            this.OneOffExpensesText.TabStop = false;
             this.OneOffExpensesText.Text = "0";
             // 
             // RecurringExpensesText
             // 
+            this.RecurringExpensesText.Enabled = false;
             this.RecurringExpensesText.Location = new System.Drawing.Point(355, 276);
             this.RecurringExpensesText.Name = "RecurringExpensesText";
             this.RecurringExpensesText.Size = new System.Drawing.Size(100, 20);
             this.RecurringExpensesText.TabIndex = 8;
+            this.RecurringExpensesText.TabStop = false;
             this.RecurringExpensesText.Text = "0";
             // 
             // OneOffIncomeLabel
@@ -207,18 +214,18 @@
 
         private System.Windows.Forms.Button BackButton;
         private System.Windows.Forms.Label PredictionLabel;
-        private System.Windows.Forms.DateTimePicker PredictionDatePicker;
         private System.Windows.Forms.Label DaysToLabel;
-        private System.Windows.Forms.TextBox DaysToPredictionText;
-        private System.Windows.Forms.TextBox OneOffIncomeText;
-        private System.Windows.Forms.TextBox RecurringIncomeText;
-        private System.Windows.Forms.TextBox OneOffExpensesText;
-        private System.Windows.Forms.TextBox RecurringExpensesText;
         private System.Windows.Forms.Label OneOffIncomeLabel;
         private System.Windows.Forms.Label RecurringIncomeLabel;
         private System.Windows.Forms.Label OneOffExpenseLabel;
         private System.Windows.Forms.Label RecurringExpensesLabel;
-        private System.Windows.Forms.TextBox BalanceOnDateText;
         private System.Windows.Forms.Label BalanceOnDateLabel;
+        public System.Windows.Forms.DateTimePicker PredictionDatePicker;
+        public System.Windows.Forms.TextBox DaysToPredictionText;
+        public System.Windows.Forms.TextBox OneOffIncomeText;
+        public System.Windows.Forms.TextBox RecurringIncomeText;
+        public System.Windows.Forms.TextBox OneOffExpensesText;
+        public System.Windows.Forms.TextBox RecurringExpensesText;
+        public System.Windows.Forms.TextBox BalanceOnDateText;
     }
 }

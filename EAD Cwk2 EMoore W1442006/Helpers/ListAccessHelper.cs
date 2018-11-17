@@ -51,5 +51,31 @@ namespace EAD_Cwk2_EMoore_W1442006.Helpers
 
             return null;
         }
+
+        public static Expense FindExpense(Guid id)
+        {
+            foreach (var expense in ExpenseList)
+            {
+                if (expense.Id == id)
+                {
+                    return expense;
+                }
+            }
+
+            return null;
+        }
+
+        public static Income FindIncome(Guid id)
+        {
+            foreach (var income in IncomeList)
+            {
+                if (income.Id == id)
+                {
+                    return income;
+                }
+            }
+
+            return null;
+        }
     }
 }

@@ -25,13 +25,37 @@ namespace EAD_Cwk2_EMoore_W1442006.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Server=localhost;Port=3306;Database=EAD;Uid=nms;Pwd=Upsetburgess1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Server=localhost;Port=3306;Database=EAD;Uid=nms;Pwd=ye77owdre55")]
         public string ConnectionString {
             get {
                 return ((string)(this["ConnectionString"]));
             }
             set {
                 this["ConnectionString"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("ye77owdre55")]
+        public string Password {
+            get {
+                return ((string)(this["Password"]));
+            }
+            set {
+                this["Password"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\\\Users\\\\Elliot\\\\Documents\\\\SaveFile.xml")]
+        public string XMLLocation {
+            get {
+                return ((string)(this["XMLLocation"]));
+            }
+            set {
+                this["XMLLocation"] = value;
             }
         }
     }

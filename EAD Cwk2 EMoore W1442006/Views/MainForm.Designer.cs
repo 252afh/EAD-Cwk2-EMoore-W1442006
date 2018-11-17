@@ -64,7 +64,7 @@
             this.ViewExpensesButton.Location = new System.Drawing.Point(658, 68);
             this.ViewExpensesButton.Name = "ViewExpensesButton";
             this.ViewExpensesButton.Size = new System.Drawing.Size(130, 124);
-            this.ViewExpensesButton.TabIndex = 2;
+            this.ViewExpensesButton.TabIndex = 3;
             this.ViewExpensesButton.Text = "View Expenses";
             this.ViewExpensesButton.UseVisualStyleBackColor = true;
             this.ViewExpensesButton.Click += new System.EventHandler(this.ViewExpensesButton_Click);
@@ -74,7 +74,7 @@
             this.ViewIncomeButton.Location = new System.Drawing.Point(437, 68);
             this.ViewIncomeButton.Name = "ViewIncomeButton";
             this.ViewIncomeButton.Size = new System.Drawing.Size(130, 124);
-            this.ViewIncomeButton.TabIndex = 3;
+            this.ViewIncomeButton.TabIndex = 2;
             this.ViewIncomeButton.Text = "View Income";
             this.ViewIncomeButton.UseVisualStyleBackColor = true;
             this.ViewIncomeButton.Click += new System.EventHandler(this.ViewIncomeButton_Click);
@@ -123,7 +123,6 @@
             this.SaveButton.TabIndex = 8;
             this.SaveButton.Text = "Save";
             this.SaveButton.UseVisualStyleBackColor = true;
-            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // MainMenuForm
             // 

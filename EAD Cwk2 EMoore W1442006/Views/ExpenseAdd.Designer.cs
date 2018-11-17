@@ -63,7 +63,6 @@
             this.SaveAndBackButton.TabIndex = 7;
             this.SaveAndBackButton.Text = "Save and back";
             this.SaveAndBackButton.UseVisualStyleBackColor = true;
-            this.SaveAndBackButton.Click += new System.EventHandler(this.SaveAndBackButton_Click);
             // 
             // CancelButton
             // 
@@ -73,7 +72,6 @@
             this.CancelButton.TabIndex = 6;
             this.CancelButton.Text = "Cancel";
             this.CancelButton.UseVisualStyleBackColor = true;
-            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // AmountInput
             // 
@@ -96,7 +94,7 @@
             65536});
             this.AmountInput.Name = "AmountInput";
             this.AmountInput.Size = new System.Drawing.Size(120, 20);
-            this.AmountInput.TabIndex = 35;
+            this.AmountInput.TabIndex = 1;
             this.AmountInput.Value = new decimal(new int[] {
             1,
             0,
@@ -111,7 +109,7 @@
             this.InitialDatePicker.MinDate = new System.DateTime(2017, 10, 1, 0, 0, 0, 0);
             this.InitialDatePicker.Name = "InitialDatePicker";
             this.InitialDatePicker.Size = new System.Drawing.Size(200, 20);
-            this.InitialDatePicker.TabIndex = 34;
+            this.InitialDatePicker.TabIndex = 5;
             this.InitialDatePicker.Value = new System.DateTime(2018, 10, 27, 17, 51, 8, 0);
             this.InitialDatePicker.Visible = false;
             // 
@@ -130,7 +128,7 @@
             this.IntervalTextBox.Location = new System.Drawing.Point(375, 269);
             this.IntervalTextBox.Name = "IntervalTextBox";
             this.IntervalTextBox.Size = new System.Drawing.Size(100, 20);
-            this.IntervalTextBox.TabIndex = 32;
+            this.IntervalTextBox.TabIndex = 4;
             this.IntervalTextBox.Visible = false;
             // 
             // PayeeDropDown
@@ -139,7 +137,7 @@
             this.PayeeDropDown.Location = new System.Drawing.Point(375, 181);
             this.PayeeDropDown.Name = "PayeeDropDown";
             this.PayeeDropDown.Size = new System.Drawing.Size(121, 21);
-            this.PayeeDropDown.TabIndex = 31;
+            this.PayeeDropDown.TabIndex = 2;
             // 
             // RecurringCheckbox
             // 
@@ -147,9 +145,8 @@
             this.RecurringCheckbox.Location = new System.Drawing.Point(375, 211);
             this.RecurringCheckbox.Name = "RecurringCheckbox";
             this.RecurringCheckbox.Size = new System.Drawing.Size(15, 14);
-            this.RecurringCheckbox.TabIndex = 30;
+            this.RecurringCheckbox.TabIndex = 3;
             this.RecurringCheckbox.UseVisualStyleBackColor = true;
-            this.RecurringCheckbox.CheckedChanged += new System.EventHandler(this.RecurringCheckbox_CheckedChanged);
             // 
             // IntervalLabel
             // 
@@ -193,7 +190,7 @@
             this.ReferenceText.Location = new System.Drawing.Point(375, 129);
             this.ReferenceText.Name = "ReferenceText";
             this.ReferenceText.Size = new System.Drawing.Size(153, 20);
-            this.ReferenceText.TabIndex = 25;
+            this.ReferenceText.TabIndex = 0;
             // 
             // ReferenceLabel
             // 
@@ -237,17 +234,17 @@
         private System.Windows.Forms.Button SaveAndNewButton;
         private System.Windows.Forms.Button SaveAndBackButton;
         private System.Windows.Forms.Button CancelButton;
-        private System.Windows.Forms.NumericUpDown AmountInput;
-        private System.Windows.Forms.DateTimePicker InitialDatePicker;
-        private System.Windows.Forms.Label InitialLabel;
-        private System.Windows.Forms.TextBox IntervalTextBox;
-        private System.Windows.Forms.ComboBox PayeeDropDown;
-        private System.Windows.Forms.CheckBox RecurringCheckbox;
-        private System.Windows.Forms.Label IntervalLabel;
         private System.Windows.Forms.Label PayeeLabel;
         private System.Windows.Forms.Label RecurringLabel;
         private System.Windows.Forms.Label AmountLabel;
-        private System.Windows.Forms.TextBox ReferenceText;
         private System.Windows.Forms.Label ReferenceLabel;
+        public System.Windows.Forms.NumericUpDown AmountInput;
+        public System.Windows.Forms.DateTimePicker InitialDatePicker;
+        public System.Windows.Forms.Label InitialLabel;
+        public System.Windows.Forms.TextBox IntervalTextBox;
+        public System.Windows.Forms.ComboBox PayeeDropDown;
+        public System.Windows.Forms.CheckBox RecurringCheckbox;
+        public System.Windows.Forms.Label IntervalLabel;
+        public System.Windows.Forms.TextBox ReferenceText;
     }
 }
