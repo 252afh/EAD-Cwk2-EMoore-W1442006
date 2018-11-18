@@ -1,14 +1,12 @@
-﻿using System;
-using System.Linq;
-using System.Windows.Forms;
-using System.Xml.Linq;
-using EAD_Cwk2_EMoore_W1442006.Controllers;
-using EAD_Cwk2_EMoore_W1442006.DataAccess;
-using EAD_Cwk2_EMoore_W1442006.Helpers;
-using EAD_Cwk2_EMoore_W1442006.Models;
-
-namespace EAD_Cwk2_EMoore_W1442006.Views
+﻿namespace EAD_Cwk2_EMoore_W1442006.Views
 {
+    using System;
+    using System.Windows.Forms;
+    using Controllers;
+    using DataAccess;
+    using Helpers;
+    using Models;
+
     public partial class MainMenuForm : Form
     {
         private static DatabaseDataAccess DA { get; } = new DatabaseDataAccess();

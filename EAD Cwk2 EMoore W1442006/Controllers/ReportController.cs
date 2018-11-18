@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using EAD_Cwk2_EMoore_W1442006.DataAccess;
-using EAD_Cwk2_EMoore_W1442006.Helpers;
-using EAD_Cwk2_EMoore_W1442006.Views;
-
-namespace EAD_Cwk2_EMoore_W1442006.Controllers
+﻿namespace EAD_Cwk2_EMoore_W1442006.Controllers
 {
+    using DataAccess;
+    using Helpers;
+    using System;
+    using Views;
+
     public static class ReportController
     {
         public static Report ReportView { get; set; }

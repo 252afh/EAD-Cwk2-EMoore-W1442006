@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using EAD_Cwk2_EMoore_W1442006.DataAccess;
-using EAD_Cwk2_EMoore_W1442006.Helpers;
-using EAD_Cwk2_EMoore_W1442006.Models;
-using EAD_Cwk2_EMoore_W1442006.Views;
-
-namespace EAD_Cwk2_EMoore_W1442006.Controllers
+﻿namespace EAD_Cwk2_EMoore_W1442006.Controllers
 {
+    using DataAccess;
+    using Helpers;
+    using Models;
+    using System;
+    using System.Windows.Forms;
+    using Views;
+
     public static class ExpenseController
     {
         private static ExpenseAdd ExpenseAdd { get; set; }
@@ -91,6 +87,7 @@ namespace EAD_Cwk2_EMoore_W1442006.Controllers
             {
                 ExpenseView.ExpenseListView.Items.Add(new ListViewItem(new[]
                 {
+                    expense.Id.ToString(),
                     expense.Payee.Name,
                     expense.Ref,
                     expense.Amount.ToString("C"),
@@ -130,7 +127,6 @@ namespace EAD_Cwk2_EMoore_W1442006.Controllers
             }
 
             EditExpense = ListAccessHelper.ExpenseList[ExpenseEdit.ExpenseDropDown.SelectedIndex];
-
             ExpenseEdit.ReferenceText.Text = EditExpense.Ref;
             ExpenseEdit.AmountNumeric.Text = EditExpense.Amount.ToString("C");
 

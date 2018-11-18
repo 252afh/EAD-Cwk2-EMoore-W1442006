@@ -1,13 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using EAD_Cwk2_EMoore_W1442006.Helpers;
-using EAD_Cwk2_EMoore_W1442006.Models;
-using EAD_Cwk2_EMoore_W1442006.Properties;
-using MySql.Data.MySqlClient;
+﻿
 
 namespace EAD_Cwk2_EMoore_W1442006.DataAccess
 {
+    using Helpers;
+    using Models;
+    using MySql.Data.MySqlClient;
+    using Properties;
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+
     public class DatabaseDataAccess
     {
 

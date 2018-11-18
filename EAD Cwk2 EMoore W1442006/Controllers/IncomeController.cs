@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using EAD_Cwk2_EMoore_W1442006.DataAccess;
-using EAD_Cwk2_EMoore_W1442006.Helpers;
-using EAD_Cwk2_EMoore_W1442006.Models;
-using EAD_Cwk2_EMoore_W1442006.Views;
+﻿
 
 namespace EAD_Cwk2_EMoore_W1442006.Controllers
 {
+    using DataAccess;
+    using Helpers;
+    using Models;
+    using System;
+    using System.Windows.Forms;
+    using Views;
+
     public static class IncomeController
     {
         public static IncomeView IncomeView { get; set; }
@@ -90,6 +88,7 @@ namespace EAD_Cwk2_EMoore_W1442006.Controllers
             {
                 IncomeView.listView1.Items.Add(new ListViewItem(new[]
                 {
+                    income.Id.ToString(),
                     income.Amount.ToString("C"),
                     income.Payer.Name,
                     income.Payer.PaymentType,

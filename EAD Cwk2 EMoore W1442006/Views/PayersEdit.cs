@@ -1,9 +1,8 @@
-﻿using System;
-using System.Windows.Forms;
-using EAD_Cwk2_EMoore_W1442006.Controllers;
-
-namespace EAD_Cwk2_EMoore_W1442006.Views
+﻿namespace EAD_Cwk2_EMoore_W1442006.Views
 {
+    using Controllers;
+    using System.Windows.Forms;
+
     public partial class PayersEdit : Form
     {
         public PayersEdit()

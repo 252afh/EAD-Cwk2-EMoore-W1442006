@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using EAD_Cwk2_EMoore_W1442006.Models;
-
-namespace EAD_Cwk2_EMoore_W1442006.Helpers
+﻿namespace EAD_Cwk2_EMoore_W1442006.Helpers
 {
+    using Models;
+    using System;
+    using System.Collections.Generic;
+
     public class ListAccessHelper
     {
         public static List<Payee> PayeeList { get; } = new List<Payee>();

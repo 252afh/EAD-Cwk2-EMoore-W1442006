@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Xml.Linq;
-using EAD_Cwk2_EMoore_W1442006.Helpers;
-using EAD_Cwk2_EMoore_W1442006.Models;
-using EAD_Cwk2_EMoore_W1442006.Properties;
-
-namespace EAD_Cwk2_EMoore_W1442006.DataAccess
+﻿namespace EAD_Cwk2_EMoore_W1442006.DataAccess
 {
+    using Helpers;
+    using Models;
+    using Properties;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Xml.Linq;
+
     public class XmlDataAccess
     {
         private void LoadPayers(XElement data)

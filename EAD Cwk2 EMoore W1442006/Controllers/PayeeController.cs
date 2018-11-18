@@ -1,12 +1,12 @@
-﻿using System;
-using System.Windows.Forms;
-using EAD_Cwk2_EMoore_W1442006.DataAccess;
-using EAD_Cwk2_EMoore_W1442006.Helpers;
-using EAD_Cwk2_EMoore_W1442006.Models;
-using EAD_Cwk2_EMoore_W1442006.Views;
-
-namespace EAD_Cwk2_EMoore_W1442006.Controllers
+﻿namespace EAD_Cwk2_EMoore_W1442006.Controllers
 {
+    using DataAccess;
+    using Helpers;
+    using Models;
+    using System;
+    using System.Windows.Forms;
+    using Views;
+
     public static class PayeeController
     {
         private static Payee EditPayee { get; set; }
@@ -86,6 +86,7 @@ namespace EAD_Cwk2_EMoore_W1442006.Controllers
             {
                 PayeeView.payeeListView.Items.Add(new ListViewItem(new[]
                 {
+                    payee.Id.ToString(),
                     payee.Name,
                     payee.Address,
                     payee.AccNumber,
@@ -180,6 +181,7 @@ namespace EAD_Cwk2_EMoore_W1442006.Controllers
             PayeeEdit.AccNumberText.Text = EditPayee.AccNumber;
             PayeeEdit.NameText.Text = EditPayee.Name;
             PayeeEdit.SortCodeText.Text = EditPayee.SortCode;
+            PayeeEdit.addressText.Text = EditPayee.Address;
         }
 
         public static void EditSaveAndBack(object sender, EventArgs e)

@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
-using EAD_Cwk2_EMoore_W1442006.Properties;
-
-namespace EAD_Cwk2_EMoore_W1442006.Helpers
+﻿namespace EAD_Cwk2_EMoore_W1442006.Helpers
 {
+    using Properties;
+    using System;
+    using System.Net;
+    using System.Net.Mail;
     public class ErrorHelper
     {
         public void SendError(Exception ex)

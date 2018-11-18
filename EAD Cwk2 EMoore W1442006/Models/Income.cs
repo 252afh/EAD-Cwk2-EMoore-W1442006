@@ -1,7 +1,7 @@
-﻿using System.Xml.Serialization;
-
-namespace EAD_Cwk2_EMoore_W1442006.Models
+﻿namespace EAD_Cwk2_EMoore_W1442006.Models
 {
+    using System.Xml.Serialization;
+
     [XmlRoot("income")]
     public class Income : Payment
     {
