@@ -6,13 +6,13 @@ namespace EAD_Cwk2_EMoore_W1442006.Helpers
 {
     public class ListAccessHelper
     {
-        public static List<Payee> PayeeList = new List<Payee>();
+        public static List<Payee> PayeeList { get; } = new List<Payee>();
 
-        public static List<Payer> PayerList = new List<Payer>();
+        public static List<Payer> PayerList { get; } = new List<Payer>();
 
-        public static List<Expense> ExpenseList = new List<Expense>();
+        public static List<Expense> ExpenseList { get; } = new List<Expense>();
 
-        public static List<Income> IncomeList = new List<Income>();
+        public static List<Income> IncomeList { get; } = new List<Income>();
 
         public static decimal Balance { get; private set; }
 
@@ -23,7 +23,7 @@ namespace EAD_Cwk2_EMoore_W1442006.Helpers
 
         public static void DecrementBalance(decimal decrement)
         {
-            Balance += decrement;
+            Balance -= decrement;
         }
 
         public static Payer FindPayer(Guid id)

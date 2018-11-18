@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using EAD_Cwk2_EMoore_W1442006.Controllers;
 
 namespace EAD_Cwk2_EMoore_W1442006.Views
 {
@@ -8,12 +9,8 @@ namespace EAD_Cwk2_EMoore_W1442006.Views
         public Report()
         {
             InitializeComponent();
-        }
-
-        private void BackButton_Click(object sender, EventArgs e)
-        {
-            this.Owner.Show();
-            this.Close();
+            this.BackButton.Click += ReportController.ViewBackButtonClick;
+            this.Shown += ReportController.ReportShown;
         }
     }
 }

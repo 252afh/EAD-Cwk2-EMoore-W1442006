@@ -9,9 +9,8 @@ using EAD_Cwk2_EMoore_W1442006.Properties;
 
 namespace EAD_Cwk2_EMoore_W1442006.Helpers
 {
-    class ErrorHelper
+    public class ErrorHelper
     {
-
         public void SendError(Exception ex)
         {
             var innerException = string.IsNullOrEmpty(ex.InnerException?.Message) ? ex.InnerException?.Message : "None";

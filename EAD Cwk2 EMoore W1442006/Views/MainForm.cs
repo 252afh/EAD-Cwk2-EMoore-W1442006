@@ -3,26 +3,21 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using EAD_Cwk2_EMoore_W1442006.Controllers;
+using EAD_Cwk2_EMoore_W1442006.DataAccess;
 using EAD_Cwk2_EMoore_W1442006.Helpers;
+using EAD_Cwk2_EMoore_W1442006.Models;
 
 namespace EAD_Cwk2_EMoore_W1442006.Views
 {
     public partial class MainMenuForm : Form
     {
-        /// <summary>
-        /// The <see cref="Report"/> view
-        /// </summary>
-        private Report ReportView;
+        private static DatabaseDataAccess DA { get; } = new DatabaseDataAccess();
 
-        /// <summary>
-        /// The <see cref="Prediction"/> view
-        /// </summary>
-        private Prediction PredictionView;
+        private static XmlDataAccess XmlDA { get; } = new XmlDataAccess();
 
         public MainMenuForm()
         {
             InitializeComponent();
-            this.balanceBox.Text = "£" + ListAccessHelper.Balance.ToString();
         }
 
         private void ViewPayeeButton_Click(object sender, EventArgs e)
@@ -99,38 +94,134 @@ namespace EAD_Cwk2_EMoore_W1442006.Views
 
         private void ViewReportButton_Click(object sender, EventArgs e)
         {
-            if (this.ReportView == null)
+            if (ReportController.ReportView == null)
             {
-                this.ReportView = new Report();
-                this.ReportView.FormClosed += this.ReportViewOnFormClosed;
+                ReportController.ReportView = new Report();
+                ReportController.ReportView.FormClosed += this.ReportViewOnFormClosed;
             }
 
-            this.ReportView.Show(this);
+            ReportController.ReportView.Show(this);
             this.Hide();
         }
 
         private void ReportViewOnFormClosed(object sender, FormClosedEventArgs e)
         {
-            this.ReportView = null;
+            ReportController.ReportView = null;
             this.Show();
         }
 
         private void ViewPredictionButton_Click(object sender, EventArgs e)
         {
-            if (this.PredictionView == null)
+            if (PredictionController.PredictionView == null)
             {
-                this.PredictionView = new Prediction();
-                this.PredictionView.FormClosed += this.PredictionViewOnFormClosed;
+                PredictionController.PredictionView = new Prediction();
+                PredictionController.PredictionView.FormClosed += this.PredictionViewOnFormClosed;
             }
 
-            this.PredictionView.Show(this);
+            PredictionController.PredictionView.Show(this);
             this.Hide();
         }
 
         private void PredictionViewOnFormClosed(object sender, FormClosedEventArgs e)
         {
-            this.PredictionView = null;
+            PredictionController.PredictionView = null;
             this.Show();
+        }
+
+        private void MainMenuForm_Shown(object sender, EventArgs e)
+        {
+            CalculateBalance();
+            this.balanceBox.Text = ListAccessHelper.Balance.ToString("C");
+        }
+
+        private static void CalculateBalance()
+        {
+            var nonRecurringIncome = 0.00m;
+            var recurringIncome = 0.00m;
+            var nonRecurringExpense = 0.00m;
+            var recurringExpense = 0.00m;
+
+            for (var index = 0; index < ListAccessHelper.IncomeList.Count; index++)
+            {
+                var income = ListAccessHelper.IncomeList[index];
+                if (income.InitialPaidDate > DateTime.UtcNow)
+                {
+                    continue;
+                }
+
+                if (income.IsRecurring)
+                {
+                    recurringIncome += CalculateRecurringIncome(income);
+                    ListAccessHelper.IncomeList[ListAccessHelper.IncomeList.IndexOf(income)] = income;
+                    DA.EditIncome(income, income.Id);
+                }
+                else
+                {
+                    nonRecurringIncome += CalculateIncome(income);
+                }
+            }
+
+            for (var index = 0; index < ListAccessHelper.ExpenseList.Count; index++)
+            {
+                var expense = ListAccessHelper.ExpenseList[index];
+                if (expense.InitialPaidDate > DateTime.UtcNow)
+                {
+                    continue;
+                }
+
+                if (expense.IsRecurring)
+                {
+                    recurringExpense += CalculateRecurringExpense(expense);
+                    ListAccessHelper.ExpenseList[ListAccessHelper.ExpenseList.IndexOf(expense)] = expense;
+                    DA.EditExpense(expense, expense.Id);
+                }
+                else
+                {
+                    nonRecurringExpense += CalculateExpense(expense);
+                }
+            }
+
+            ListAccessHelper.IncrementBalance(recurringIncome);
+            ListAccessHelper.IncrementBalance(nonRecurringIncome);
+            ListAccessHelper.DecrementBalance(recurringExpense);
+            ListAccessHelper.DecrementBalance(nonRecurringExpense);
+
+            XmlDA.SaveXml();
+        }
+
+        private static decimal CalculateRecurringExpense(Expense expense)
+        {
+            var days = (DateTime.UtcNow - expense.InitialPaidDate).Days;
+            var payments = (days / expense.Interval) + 1;
+            var paymentAmount = payments * expense.Amount;
+            var remainder = days % expense.Interval;
+            var lastPaid = DateTime.UtcNow.AddDays(-remainder);
+            expense.LastPaidDate = lastPaid;
+
+            return paymentAmount;
+        }
+
+        private static decimal CalculateExpense(Expense expense)
+        {
+            return expense.Amount;
+        }
+
+        private static decimal CalculateRecurringIncome(Income income)
+        {
+            var days = (DateTime.UtcNow - income.InitialPaidDate).Days;
+            var payments = (days / income.Interval) + 1;
+            var paymentAmount = payments * income.Amount;
+
+            var remainder = days % income.Interval;
+            var lastPaid = DateTime.UtcNow.AddDays(-remainder);
+            income.LastPaidDate = lastPaid;
+
+            return paymentAmount;
+        }
+
+        private static decimal CalculateIncome(Income income)
+        {
+            return income.Amount;
         }
     }
 }

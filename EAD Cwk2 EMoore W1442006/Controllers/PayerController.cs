@@ -13,12 +13,17 @@ namespace EAD_Cwk2_EMoore_W1442006.Controllers
 {
     public static class PayerController
     {
-        private static PayersEdit PayersEdit;
-        private static Payer EditedPayer;
-        private static PayersAdd PayersAdd;
-        public static Views.Payer PayerView;
-        private static readonly DatabaseDataAccess DA = new DatabaseDataAccess();
-        private static readonly XmlDataAccess XmlDA = new XmlDataAccess();
+        private static PayersEdit PayersEdit { get; set; }
+
+        private static Payer EditedPayer { get; set; }
+
+        private static PayersAdd PayersAdd { get; set; }
+
+        public static Views.Payer PayerView { get; set; }
+
+        private static DatabaseDataAccess DA { get; } = new DatabaseDataAccess();
+
+        private static XmlDataAccess XmlDA { get; } = new XmlDataAccess();
 
 
         public static void EditPayer(Payer payer)
@@ -142,7 +147,7 @@ namespace EAD_Cwk2_EMoore_W1442006.Controllers
             if (PayersEdit == null)
             {
                 PayersEdit = new PayersEdit();
-                PayersEdit.FormClosed += PayerController.PayerEditViewOnFormClosed;
+                PayersEdit.FormClosed += PayerEditViewOnFormClosed;
             }
 
             var selectedItems = PayerView.PayerListView.SelectedItems;

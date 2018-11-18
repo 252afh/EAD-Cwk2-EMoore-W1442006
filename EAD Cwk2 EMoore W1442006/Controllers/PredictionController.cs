@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using EAD_Cwk2_EMoore_W1442006.Helpers;
 using EAD_Cwk2_EMoore_W1442006.Views;
 
@@ -10,7 +12,27 @@ namespace EAD_Cwk2_EMoore_W1442006.Controllers
 {
     public static class PredictionController
     {
-        public static Prediction PredictionView;
+        public static Prediction PredictionView { get; set; }
+
+        private static decimal RecurringIncomeBefore { get; set; }
+
+        private static decimal RecurringExpenseBefore { get; set; }
+
+        private static decimal NonRecurringIncomeBefore { get; set; }
+
+        private static decimal NonRecurringExpenseBefore { get; set; }
+
+        private static decimal PercentageGain { get; set; }
+
+        private static decimal RecurringIncomeAfter { get; set; }
+
+        private static decimal RecurringExpenseAfter { get; set; }
+        
+        private static DateTime PeriodStart { get; set; }
+
+        private static DateTime PeriodEnd { get; set; }
+
+        private static decimal CurrentBalance { get; } = ListAccessHelper.Balance;
 
         public static void BackButtonClicked(object sender, EventArgs e)
         {
@@ -20,191 +42,216 @@ namespace EAD_Cwk2_EMoore_W1442006.Controllers
 
         public static void PredictionDateChanged(object sender, EventArgs e)
         {
-            PredictionView.BalanceOnDateText.Text = null;
-            PredictionView.DaysToPredictionText.Text = null;
-            PredictionView.OneOffExpensesText.Text = null;
-            PredictionView.OneOffIncomeText.Text = null;
-            PredictionView.RecurringExpensesText.Text = null;
-            PredictionView.RecurringIncomeText.Text = null;
+            var periodLength = (PredictionView.PredictionDatePicker.Value - DateTime.UtcNow).Days;
+            PeriodStart = DateTime.UtcNow.AddDays(-periodLength);
+            PeriodEnd = PredictionView.PredictionDatePicker.Value;
 
-            var currentBalance = ListAccessHelper.Balance;
-            var startBalance = currentBalance;
+            PredictionView.BalanceOnDateText.Text = string.Empty;
+            PredictionView.DaysToPredictionText.Text = string.Empty;
+            PredictionView.OneOffExpensesText.Text = string.Empty;
+            PredictionView.OneOffIncomeText.Text = string.Empty;
+            PredictionView.RecurringExpensesText.Text = string.Empty;
+            PredictionView.RecurringIncomeText.Text = string.Empty;
 
-            var days = (DateTime.UtcNow - PredictionView.PredictionDatePicker.Value).Days;
+            CalculatePrediction();
+        }
 
-            var predictionStart = DateTime.UtcNow.AddDays(days * -1);
-            var predictionEnd = DateTime.UtcNow.AddDays(days);
+        private static void CalculatePrediction()
+        {
+            RecurringIncomeBefore = CalculateRecurringIncomeBefore();
+            RecurringExpenseBefore = CalculateRecurringExpenseBefore();
+            NonRecurringIncomeBefore = CalculateNonRecurringIncomeBefore();
+            NonRecurringExpenseBefore = CalculateNonRecurringExpenseBefore();
+            RecurringIncomeAfter = CalculateRecurringIncomeAfter();
+            RecurringExpenseAfter = CalculateRecurringExpenseAfter();
 
-            decimal recurringIncomeBefore = 0;
-            decimal oneOffIncomeBefore = 0;
-            decimal recurringExpenseBefore = 0;
-            decimal oneOffExpenseBefore = 0;
-            decimal recurringIncomeAfter = 0;
-            decimal recurringExpenseAfter = 0;
-            decimal predictionAmount = 0;
-            decimal predictedOneOffPercentageGain = 0;
+            var currentWithoutRecurring = CurrentBalance - RecurringIncomeBefore;
+            currentWithoutRecurring += RecurringExpenseBefore;
 
-            foreach (var expense in ListAccessHelper.ExpenseList)
+            var previousWithoutAny = currentWithoutRecurring - NonRecurringIncomeBefore;
+            previousWithoutAny += NonRecurringExpenseBefore;
+
+            PercentageGain = CalculatePercentageGain(currentWithoutRecurring, previousWithoutAny);
+
+            if (PercentageGain > 0)
             {
-                if (expense.IsRecurring)
-                {
-                    if (expense.InitialPaidDate <= DateTime.UtcNow &&
-                        (expense.InitialPaidDate >= predictionStart ||
-                         (expense.LastPaidDate.AddDays(expense.Interval) >= predictionStart &&
-                          expense.LastPaidDate.AddDays(expense.Interval) <= DateTime.UtcNow)))
-                    {
-                        if (expense.LastPaidDate < predictionStart &&
-                            (expense.LastPaidDate.AddDays(expense.Interval) >= predictionStart &&
-                             expense.LastPaidDate.AddDays(expense.Interval) <= DateTime.UtcNow))
-                        {
-                            var firstPaymentInsidePeriod = expense.LastPaidDate.AddDays(expense.Interval);
-                            var payments = 1;
-                            var availableDays = (DateTime.UtcNow - firstPaymentInsidePeriod).Days;
-                            payments += availableDays / expense.Interval;
-                            var paymentAmountForRecurring = payments * expense.Amount;
-
-                            recurringExpenseBefore += paymentAmountForRecurring;
-                        }
-                    }
-                }
-                else
-                {
-                    if (expense.InitialPaidDate >= predictionStart && expense.InitialPaidDate <= DateTime.UtcNow)
-                    {
-                        oneOffExpenseBefore += expense.Amount;
-                    }
-                }
-            }
-
-            foreach (var income in ListAccessHelper.IncomeList)
-            {
-                if (income.IsRecurring)
-                {
-                    // Checks the payment is within the previous period of the next payment will fall into this category
-                    if (income.InitialPaidDate <= DateTime.UtcNow &&
-                        (income.LastPaidDate >= predictionStart ||
-                         (income.LastPaidDate.AddDays(income.Interval) >= predictionStart &&
-                          income.LastPaidDate.AddDays(income.Interval) <= DateTime.UtcNow)))
-                    {
-                        var payments = 1;
-                        DateTime firstPaymentInPeriod;
-
-                        if (income.LastPaidDate >= predictionStart)
-                        {
-                            firstPaymentInPeriod = income.LastPaidDate;
-                        }
-                        else
-                        {
-                            firstPaymentInPeriod = income.LastPaidDate.AddDays(income.Interval);
-                        }
-
-                        var daysInPayment = (DateTime.UtcNow - firstPaymentInPeriod).Days;
-                        payments += (daysInPayment / income.Interval);
-                        var amount = payments * income.Amount;
-
-                        recurringIncomeBefore += amount;
-                    }
-                }
-                else
-                {
-                    if (income.InitialPaidDate >= predictionStart && income.InitialPaidDate <= DateTime.UtcNow)
-                    {
-                        oneOffIncomeBefore += income.Amount;
-                    }
-                }
-            }
-
-            foreach (var income in ListAccessHelper.IncomeList)
-            {
-                if (!income.IsRecurring)
-                {
-                    continue;
-                }
-
-                if ((income.InitialPaidDate >= DateTime.Now && income.InitialPaidDate <= predictionEnd) ||
-                    (income.LastPaidDate.AddDays(income.Interval) >= DateTime.Now &&
-                     income.LastPaidDate.AddDays(income.Interval) <= predictionEnd))
-                {
-                    if (income.InitialPaidDate < DateTime.Now)
-                    {
-                        // means it is within the date with the interval added
-                        var daysInPaymentPeriodAfter =
-                            (predictionEnd - income.LastPaidDate.AddDays(income.Interval)).Days;
-                        var incomeAmount = ((daysInPaymentPeriodAfter / income.Interval) + 1) * income.Amount;
-                        // Add to var or add to total balance for final prediction?
-                        recurringIncomeAfter += incomeAmount;
-                    }
-                    else
-                    {
-                        var daysInPaymentPeriod = (predictionEnd - income.LastPaidDate).Days;
-                        var paymentsInPaymentPeriod = daysInPaymentPeriod / income.Interval;
-                        var paymentAmount = (paymentsInPaymentPeriod + 1) * income.Amount;
-                        recurringIncomeAfter += paymentAmount;
-                    }
-                }
-            }
-
-
-            foreach (var expense in ListAccessHelper.ExpenseList)
-            {
-                if (!expense.IsRecurring)
-                {
-                    continue;
-                }
-
-                if ((expense.InitialPaidDate >= DateTime.Now && expense.InitialPaidDate <= predictionEnd) ||
-                    (expense.LastPaidDate.AddDays(expense.Interval) >= DateTime.Now &&
-                     expense.LastPaidDate.AddDays(expense.Interval) <= predictionEnd))
-                {
-                    if (expense.InitialPaidDate < DateTime.Now)
-                    {
-                        // means it is within the date with the interval added
-                        var daysInPaymentPeriodAfter =
-                            (predictionEnd - expense.LastPaidDate.AddDays(expense.Interval)).Days;
-                        var incomeAmount = ((daysInPaymentPeriodAfter / expense.Interval) + 1) * expense.Amount;
-                        // Add to var or add to total balance for final prediction?
-                        recurringExpenseAfter += incomeAmount;
-                    }
-                    else
-                    {
-                        var daysInPaymentPeriod = (predictionEnd - expense.LastPaidDate).Days;
-                        var paymentsInPaymentPeriod = daysInPaymentPeriod / expense.Interval;
-                        var paymentAmount = (paymentsInPaymentPeriod + 1) * expense.Amount;
-                        recurringExpenseAfter += paymentAmount;
-                    }
-                }
-            }
-
-
-            // work out percentage increase
-
-            var currentBalanceWithoutRecurring = (currentBalance - recurringIncomeBefore) + recurringExpenseBefore;
-            var balanceBeforeWithoutOneOffPayments =
-                (currentBalanceWithoutRecurring - oneOffIncomeBefore) + oneOffExpenseBefore;
-            var percentageGain = (currentBalanceWithoutRecurring - balanceBeforeWithoutOneOffPayments) /
-                                 balanceBeforeWithoutOneOffPayments;
-            if (percentageGain > 0)
-            {
-                predictedOneOffPercentageGain =
-                    currentBalanceWithoutRecurring + (currentBalanceWithoutRecurring * percentageGain);
+                PercentageGain += 1.00m;
             }
             else
             {
-                predictedOneOffPercentageGain =
-                    currentBalanceWithoutRecurring - (currentBalanceWithoutRecurring * percentageGain);
+                PercentageGain -= 1.00m;
             }
 
-            var predictedRecurringAfter = recurringIncomeAfter - recurringExpenseAfter;
+            var percentageIncreased = currentWithoutRecurring * PercentageGain;
 
-            predictionAmount = predictedOneOffPercentageGain + predictedRecurringAfter;
+            var predictedTotal = percentageIncreased - RecurringExpenseAfter;
+            predictedTotal += RecurringIncomeAfter;
 
-            PredictionView.BalanceOnDateText.Text = "£" + predictionAmount;
-            PredictionView.DaysToPredictionText.Text = (predictionEnd - DateTime.UtcNow).Days.ToString();
-            PredictionView.OneOffExpensesText.Text = "£" + oneOffExpenseBefore.ToString();
-            PredictionView.OneOffIncomeText.Text = "£" + oneOffIncomeBefore.ToString();
-            PredictionView.RecurringExpensesText.Text = "£" + recurringExpenseAfter.ToString();
-            PredictionView.RecurringIncomeText.Text = "£" + recurringIncomeAfter.ToString();
+            PredictionView.BalanceOnDateText.Text = predictedTotal.ToString("C");
+            PredictionView.DaysToPredictionText.Text = (PeriodEnd - DateTime.UtcNow).Days.ToString() + " days";
+            PredictionView.OneOffExpensesText.Text = NonRecurringExpenseBefore.ToString("C");
+            PredictionView.OneOffIncomeText.Text = NonRecurringIncomeBefore.ToString("C");
+            PredictionView.RecurringExpensesText.Text = RecurringExpenseAfter.ToString("C");
+            PredictionView.RecurringIncomeText.Text = RecurringIncomeAfter.ToString("C");
+        }
 
+        private static decimal CalculatePercentageGain(decimal current, decimal previous)
+        {
+            if (previous == 0)
+            {
+                return 0.00m;
+            }
+
+            var change = current - previous;
+            return change / previous;
+        }
+
+        private static decimal CalculateRecurringExpenseAfter()
+        {
+            var recurringExpenseAfterTotal = 0.00m;
+
+            foreach (var expense in ListAccessHelper.ExpenseList)
+            {
+                if (!expense.IsRecurring || expense.InitialPaidDate > PeriodEnd)
+                {
+                    continue;
+                }
+
+                var startDate = expense.InitialPaidDate;
+
+                while (startDate < DateTime.UtcNow)
+                {
+                    startDate = startDate.AddDays(expense.Interval);
+                }
+
+                var remainingdays = (PeriodEnd - startDate).Days;
+                var payments = (remainingdays / expense.Interval) + 1;
+                var paymentAmount = payments * expense.Amount;
+                recurringExpenseAfterTotal += paymentAmount;
+            }
+
+            return recurringExpenseAfterTotal;
+        }
+
+        private static decimal CalculateRecurringIncomeAfter()
+        {
+            var recurringIncomeAfterTotal = 0.00m;
+
+            foreach (var income in ListAccessHelper.IncomeList)
+            {
+                if (!income.IsRecurring || income.InitialPaidDate > PeriodEnd)
+                {
+                    continue;
+                }
+
+                var startDate = income.InitialPaidDate;
+
+                while (startDate < DateTime.UtcNow)
+                {
+                    startDate = startDate.AddDays(income.Interval);
+                }
+
+                var remainingdays = (PeriodEnd - startDate).Days;
+                var payments = (remainingdays / income.Interval) + 1;
+                var paymentAmount = payments * income.Amount;
+                recurringIncomeAfterTotal += paymentAmount;
+            }
+
+            return recurringIncomeAfterTotal;
+        }
+
+        private static decimal CalculateNonRecurringExpenseBefore()
+        {
+            var nonRecurringExpenseBefore = 0.00m;
+
+            foreach (var expense in ListAccessHelper.ExpenseList)
+            {
+                if (expense.IsRecurring || expense.InitialPaidDate > DateTime.UtcNow)
+                {
+                    continue;
+                }
+
+                if (expense.InitialPaidDate > PeriodStart)
+                {
+                    nonRecurringExpenseBefore += expense.Amount;
+                }
+            }
+
+            return nonRecurringExpenseBefore;
+        }
+
+        private static decimal CalculateNonRecurringIncomeBefore()
+        {
+            var nonRecurringIncomeBefore = 0.00m;
+
+            foreach (var income in ListAccessHelper.IncomeList)
+            {
+                if (income.IsRecurring || income.InitialPaidDate > DateTime.UtcNow)
+                {
+                    continue;
+                }
+
+                if (income.InitialPaidDate > PeriodStart)
+                {
+                    nonRecurringIncomeBefore += income.Amount;
+                }
+            }
+
+            return nonRecurringIncomeBefore;
+        }
+
+        private static decimal CalculateRecurringExpenseBefore()
+        {
+            var recurringExpenseBeforeTotal = 0.00m;
+
+            foreach (var expense in ListAccessHelper.ExpenseList)
+            {
+                if (!expense.IsRecurring || expense.InitialPaidDate > DateTime.UtcNow)
+                {
+                    continue;
+                }
+
+                var startDate = expense.InitialPaidDate;
+
+                while (startDate < PeriodStart)
+                {
+                    startDate = startDate.AddDays(expense.Interval);
+                }
+
+                var remainingdays = (DateTime.UtcNow - startDate).Days;
+                var payments = (remainingdays / expense.Interval) + 1;
+                var paymentAmount = payments * expense.Amount;
+                recurringExpenseBeforeTotal += paymentAmount;
+            }
+
+            return recurringExpenseBeforeTotal;
+        }
+
+        private static decimal CalculateRecurringIncomeBefore()
+        {
+            var recurringIncomeBeforeTotal = 0.00m;
+
+            foreach (var income in ListAccessHelper.IncomeList)
+            {
+                if (!income.IsRecurring || income.InitialPaidDate > DateTime.UtcNow)
+                {
+                    continue;
+                }
+
+                var startDate = income.InitialPaidDate;
+
+                while (startDate < PeriodStart)
+                {
+                    startDate = startDate.AddDays(income.Interval);
+                }
+
+                var remainingdays = (DateTime.UtcNow - startDate).Days;
+                var payments = (remainingdays / income.Interval) + 1;
+                var paymentAmount = payments * income.Amount;
+                recurringIncomeBeforeTotal += paymentAmount;
+            }
+
+            return recurringIncomeBeforeTotal;
         }
     }
 }

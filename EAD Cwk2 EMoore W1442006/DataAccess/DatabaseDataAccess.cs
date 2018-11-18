@@ -11,15 +11,16 @@ namespace EAD_Cwk2_EMoore_W1442006.DataAccess
     public class DatabaseDataAccess
     {
 
-        private static readonly string ConnectionString = Settings.Default.ConnectionString;
-        private readonly MySqlConnection conn = new MySqlConnection(ConnectionString);
+        private static string ConnectionString { get; } = Settings.Default.ConnectionString;
+
+        private MySqlConnection Conn { get; } = new MySqlConnection(ConnectionString);
 
         public async void InsertExpense(Expense expense)
         {
-            using (conn)
-            using (var comm = conn.CreateCommand())
+            using (Conn)
+            using (var comm = Conn.CreateCommand())
             {
-                await conn.OpenAsync();
+                await Conn.OpenAsync();
 
                 comm.CommandText =
                     "INSERT INTO " +
@@ -36,16 +37,16 @@ namespace EAD_Cwk2_EMoore_W1442006.DataAccess
 
                 await comm.ExecuteNonQueryAsync();
 
-                await conn.CloseAsync();
+                await Conn.CloseAsync();
             }
         }
 
         public async void InsertIncome(Income income)
         {
-            using (conn)
-            using (var comm = conn.CreateCommand())
+            using (Conn)
+            using (var comm = Conn.CreateCommand())
             {
-                await conn.OpenAsync();
+                await Conn.OpenAsync();
 
                 comm.CommandText =
                     "INSERT INTO " +
@@ -62,16 +63,16 @@ namespace EAD_Cwk2_EMoore_W1442006.DataAccess
 
                 await comm.ExecuteNonQueryAsync();
 
-                await conn.CloseAsync();
+                await Conn.CloseAsync();
             }
         }
 
         public async void InsertPayee(Payee payee)
         {
-            using (conn)
-            using (var comm = conn.CreateCommand())
+            using (Conn)
+            using (var comm = Conn.CreateCommand())
             {
-                await conn.OpenAsync();
+                await Conn.OpenAsync();
 
                 comm.CommandText = "INSERT INTO " +
                                    "payee(Id, Name, SortCode, AccountNumber, Address) " +
@@ -85,16 +86,16 @@ namespace EAD_Cwk2_EMoore_W1442006.DataAccess
 
                 await comm.ExecuteNonQueryAsync();
 
-                await conn.CloseAsync();
+                await Conn.CloseAsync();
             }
         }
 
         public async void InsertPayer(Payer payer)
         {
-            using (conn)
-            using (var comm = conn.CreateCommand())
+            using (Conn)
+            using (var comm = Conn.CreateCommand())
             {
-                await conn.OpenAsync();
+                await Conn.OpenAsync();
 
                 comm.CommandText = "INSERT INTO " +
                                    "payer(Id, Name, PaymentType) " +
@@ -106,16 +107,16 @@ namespace EAD_Cwk2_EMoore_W1442006.DataAccess
 
                 await comm.ExecuteNonQueryAsync();
 
-                await conn.CloseAsync();
+                await Conn.CloseAsync();
             }
         }
 
         public async Task<List<Expense>> GetExpenses()
         {
-            using (conn)
-            using (var comm = conn.CreateCommand())
+            using (Conn)
+            using (var comm = Conn.CreateCommand())
             {
-                await conn.OpenAsync();
+                await Conn.OpenAsync();
 
                 comm.CommandText = "SELECT * FROM expense";
 
@@ -139,7 +140,7 @@ namespace EAD_Cwk2_EMoore_W1442006.DataAccess
                     expenses.Add(expense);
                 }
 
-                await conn.CloseAsync();
+                await Conn.CloseAsync();
 
                 return expenses;
             }
@@ -147,10 +148,10 @@ namespace EAD_Cwk2_EMoore_W1442006.DataAccess
         
         public async Task<List<Income>> GetIncomes()
         {
-            using (conn)
-            using (var comm = conn.CreateCommand())
+            using (Conn)
+            using (var comm = Conn.CreateCommand())
             {
-                await conn.OpenAsync();
+                await Conn.OpenAsync();
 
                 comm.CommandText = "SELECT * FROM income";
 
@@ -174,7 +175,7 @@ namespace EAD_Cwk2_EMoore_W1442006.DataAccess
                     incomes.Add(income);
                 }
 
-                await conn.CloseAsync();
+                await Conn.CloseAsync();
 
                 return incomes;
             }
@@ -182,10 +183,10 @@ namespace EAD_Cwk2_EMoore_W1442006.DataAccess
 
         public async Task<List<Payee>> GetPayees()
         {
-            using (conn)
-            using (var comm = conn.CreateCommand())
+            using (Conn)
+            using (var comm = Conn.CreateCommand())
             {
-                await conn.OpenAsync();
+                await Conn.OpenAsync();
 
                 comm.CommandText = "SELECT * FROM payee";
 
@@ -206,7 +207,7 @@ namespace EAD_Cwk2_EMoore_W1442006.DataAccess
                     payees.Add(payee);
                 }
 
-                await conn.CloseAsync();
+                await Conn.CloseAsync();
 
                 return payees;
             }
@@ -214,10 +215,10 @@ namespace EAD_Cwk2_EMoore_W1442006.DataAccess
 
         public async Task<List<Payer>> GetPayers()
         {
-            using (conn)
-            using (var comm = conn.CreateCommand())
+            using (Conn)
+            using (var comm = Conn.CreateCommand())
             {
-                await conn.OpenAsync();
+                await Conn.OpenAsync();
 
                 comm.CommandText = "SELECT * FROM payer";
 
@@ -236,7 +237,7 @@ namespace EAD_Cwk2_EMoore_W1442006.DataAccess
                     payers.Add(payer);
                 }
 
-                await conn.CloseAsync();
+                await Conn.CloseAsync();
 
                 return payers;
             }
@@ -244,10 +245,10 @@ namespace EAD_Cwk2_EMoore_W1442006.DataAccess
 
         public async void EditExpense(Expense expense, Guid Id)
         {
-            using (conn)
-            using (var comm = conn.CreateCommand())
+            using (Conn)
+            using (var comm = Conn.CreateCommand())
             {
-                await conn.OpenAsync();
+                await Conn.OpenAsync();
 
                 comm.CommandText = "UPDATE expense " +
                                    "SET Id = @NewId, PayeeId = @PayeeId, Reference = @Reference, Amount = @Amount, " +
@@ -266,18 +267,18 @@ namespace EAD_Cwk2_EMoore_W1442006.DataAccess
 
                 await comm.ExecuteNonQueryAsync();
 
-                await conn.CloseAsync();
+                await Conn.CloseAsync();
             }
         }
 
         public async void EditIncome(Income income, Guid Id)
         {
-            using (conn)
-            using (var comm = conn.CreateCommand())
+            using (Conn)
+            using (var comm = Conn.CreateCommand())
             {
-                await conn.OpenAsync();
+                await Conn.OpenAsync();
 
-                comm.CommandText = "UPDATE expense " +
+                comm.CommandText = "UPDATE income " +
                                    "SET Id = @NewId, PayerId = @PayerId, Reference = @Reference, Amount = @Amount, " +
                                    "IsRecurring = @IsRecurring, PaymentInterval = @PaymentInterval, InitialPaidDate = @InitialPaidDate, " +
                                    "LastPaidDate = @LastPaidDate " +
@@ -295,16 +296,16 @@ namespace EAD_Cwk2_EMoore_W1442006.DataAccess
 
                 await comm.ExecuteNonQueryAsync();
 
-                await conn.CloseAsync();
+                await Conn.CloseAsync();
             }
         }
 
         public async void EditPayee(Payee payee, Guid Id)
         {
-            using (conn)
-            using (var comm = conn.CreateCommand())
+            using (Conn)
+            using (var comm = Conn.CreateCommand())
             {
-                await conn.OpenAsync();
+                await Conn.OpenAsync();
 
                 comm.CommandText = "UPDATE payee " +
                                    "SET Id = @NewId, Name = @Name, SortCode = @SortCode, " +
@@ -320,16 +321,16 @@ namespace EAD_Cwk2_EMoore_W1442006.DataAccess
 
                 await comm.ExecuteNonQueryAsync();
 
-                await conn.CloseAsync();
+                await Conn.CloseAsync();
             }
         }
 
         public async void EditPayer(Payer payer, Guid Id)
         {
-            using (conn)
-            using (var comm = conn.CreateCommand())
+            using (Conn)
+            using (var comm = Conn.CreateCommand())
             {
-                await conn.OpenAsync();
+                await Conn.OpenAsync();
 
                 comm.CommandText = "UPDATE payee " +
                                    "SET Id = @NewId, Name = @Name, " +
@@ -343,7 +344,7 @@ namespace EAD_Cwk2_EMoore_W1442006.DataAccess
 
                 await comm.ExecuteNonQueryAsync();
 
-                await conn.CloseAsync();
+                await Conn.CloseAsync();
             }
         }
     }

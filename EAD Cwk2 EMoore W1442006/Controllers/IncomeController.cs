@@ -13,12 +13,17 @@ namespace EAD_Cwk2_EMoore_W1442006.Controllers
 {
     public static class IncomeController
     {
-        public static IncomeView IncomeView;
-        private static IncomeAdd IncomeAdd;
-        private static IncomeEdit IncomeEdit;
-        private static Income EditIncome;
-        private static DatabaseDataAccess DA = new DatabaseDataAccess();
-        private static XmlDataAccess XmlDA = new XmlDataAccess();
+        public static IncomeView IncomeView { get; set; }
+
+        private static IncomeAdd IncomeAdd { get; set; }
+
+        private static IncomeEdit IncomeEdit { get; set; }
+
+        private static Income EditIncome { get; set; }
+
+        private static DatabaseDataAccess DA { get; } = new DatabaseDataAccess();
+
+        private static XmlDataAccess XmlDA { get; } = new XmlDataAccess();
 
         public static void ViewBackButton(object sender, EventArgs e)
         {
@@ -85,7 +90,7 @@ namespace EAD_Cwk2_EMoore_W1442006.Controllers
             {
                 IncomeView.listView1.Items.Add(new ListViewItem(new[]
                 {
-                    "£" + income.Amount.ToString(),
+                    income.Amount.ToString("C"),
                     income.Payer.Name,
                     income.Payer.PaymentType,
                     income.IsRecurring? "Yes" : "No",
@@ -114,7 +119,7 @@ namespace EAD_Cwk2_EMoore_W1442006.Controllers
             EditIncome = ListAccessHelper.IncomeList[IncomeEdit.IncomeDropDown.SelectedIndex];
 
             IncomeEdit.ReferenceText.Text = EditIncome.Ref;
-            IncomeEdit.AmountInput.Text = EditIncome.Amount.ToString();
+            IncomeEdit.AmountInput.Text = EditIncome.Amount.ToString("C");
 
             foreach (var payer in ListAccessHelper.PayerList)
             {
@@ -132,9 +137,7 @@ namespace EAD_Cwk2_EMoore_W1442006.Controllers
             IncomeEdit.IntervalTextBox.Visible = visible;
             IncomeEdit.InitialLabel.Visible = visible;
             IncomeEdit.InitialDatePicker.Visible = visible;
-
             IncomeEdit.IntervalTextBox.Text = EditIncome.Interval.ToString();
-
             IncomeEdit.InitialDatePicker.Text = EditIncome.InitialPaidDate.ToShortDateString();
         }
 

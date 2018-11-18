@@ -36,7 +36,6 @@
             this.ViewPredictionButton = new System.Windows.Forms.Button();
             this.balanceLabel = new System.Windows.Forms.Label();
             this.balanceBox = new System.Windows.Forms.TextBox();
-            this.SaveButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ViewPayeeButton
@@ -115,21 +114,11 @@
             this.balanceBox.Size = new System.Drawing.Size(100, 20);
             this.balanceBox.TabIndex = 7;
             // 
-            // SaveButton
-            // 
-            this.SaveButton.Location = new System.Drawing.Point(22, 16);
-            this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(75, 23);
-            this.SaveButton.TabIndex = 8;
-            this.SaveButton.Text = "Save";
-            this.SaveButton.UseVisualStyleBackColor = true;
-            // 
             // MainMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.balanceBox);
             this.Controls.Add(this.balanceLabel);
             this.Controls.Add(this.ViewPredictionButton);
@@ -140,6 +129,7 @@
             this.Controls.Add(this.ViewPayeeButton);
             this.Name = "MainMenuForm";
             this.Text = "Main Menu";
+            this.Shown += new System.EventHandler(this.MainMenuForm_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -155,7 +145,6 @@
         private System.Windows.Forms.Button ViewPredictionButton;
         private System.Windows.Forms.Label balanceLabel;
         private System.Windows.Forms.TextBox balanceBox;
-        private System.Windows.Forms.Button SaveButton;
     }
 }
 

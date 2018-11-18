@@ -13,12 +13,17 @@ namespace EAD_Cwk2_EMoore_W1442006.Controllers
 {
     public static class ExpenseController
     {
-        private static ExpenseAdd ExpenseAdd;
-        private static ExpenseEdit ExpenseEdit;
-        private static Expense EditExpense;
-        public static ExpenseView ExpenseView;
-        private static DatabaseDataAccess DA = new DatabaseDataAccess();
-        private static XmlDataAccess XmlDA = new XmlDataAccess();
+        private static ExpenseAdd ExpenseAdd { get; set; }
+
+        private static ExpenseEdit ExpenseEdit { get; set; }
+
+        private static Expense EditExpense { get; set; }
+
+        public static ExpenseView ExpenseView { get; set; }
+
+        private static DatabaseDataAccess DA { get; } = new DatabaseDataAccess();
+
+        private static XmlDataAccess XmlDA { get; } = new XmlDataAccess();
 
 
         public static void ViewBackButton(object sender, EventArgs e)
@@ -88,7 +93,7 @@ namespace EAD_Cwk2_EMoore_W1442006.Controllers
                 {
                     expense.Payee.Name,
                     expense.Ref,
-                    "£" + expense.Amount.ToString(),
+                    expense.Amount.ToString("C"),
                     expense.IsRecurring ? "Yes" : "No",
                     expense.IsRecurring ? expense.Interval.ToString() + " days" : "-",
                     expense.InitialPaidDate.ToShortDateString(),
@@ -127,7 +132,7 @@ namespace EAD_Cwk2_EMoore_W1442006.Controllers
             EditExpense = ListAccessHelper.ExpenseList[ExpenseEdit.ExpenseDropDown.SelectedIndex];
 
             ExpenseEdit.ReferenceText.Text = EditExpense.Ref;
-            ExpenseEdit.AmountNumeric.Text = EditExpense.Amount.ToString();
+            ExpenseEdit.AmountNumeric.Text = EditExpense.Amount.ToString("C");
 
             foreach (var payee in ListAccessHelper.PayeeList)
             {
@@ -145,9 +150,7 @@ namespace EAD_Cwk2_EMoore_W1442006.Controllers
             ExpenseEdit.IntervalText.Visible = visible;
             ExpenseEdit.StartDateLabel.Visible = visible;
             ExpenseEdit.InitialPaymentDateTime.Visible = visible;
-
             ExpenseEdit.IntervalText.Text = EditExpense.Interval.ToString();
-
             ExpenseEdit.InitialPaymentDateTime.Text = EditExpense.InitialPaidDate.ToShortDateString();
         }
 
@@ -299,7 +302,7 @@ namespace EAD_Cwk2_EMoore_W1442006.Controllers
             var checkState = ExpenseAdd.RecurringCheckbox.Checked;
 
             ExpenseAdd.InitialDatePicker.Value = DateTime.UtcNow;
-            ExpenseAdd.IntervalTextBox.Text = String.Empty;
+            ExpenseAdd.IntervalTextBox.Text = string.Empty;
 
             ExpenseAdd.InitialDatePicker.Visible = checkState;
             ExpenseAdd.InitialDatePicker.Enabled = checkState;

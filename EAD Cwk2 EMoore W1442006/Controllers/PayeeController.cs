@@ -9,12 +9,17 @@ namespace EAD_Cwk2_EMoore_W1442006.Controllers
 {
     public static class PayeeController
     {
-        private static Payee EditPayee;
-        private static PayeeEdit PayeeEdit;
-        private static PayeeAdd PayeeAdd;
-        public static PayeeViewForm PayeeView;
-        private static DatabaseDataAccess DA = new DatabaseDataAccess();
-        private static XmlDataAccess XmlDA = new XmlDataAccess();
+        private static Payee EditPayee { get; set; }
+
+        private static PayeeEdit PayeeEdit { get; set; }
+
+        private static PayeeAdd PayeeAdd { get; set; }
+
+        public static PayeeViewForm PayeeView { get; set; }
+
+        private static DatabaseDataAccess DA { get; } = new DatabaseDataAccess();
+
+        private static XmlDataAccess XmlDA { get; } = new XmlDataAccess();
 
         public static void EditPayeeClick(object sender, EventArgs e)
         {
