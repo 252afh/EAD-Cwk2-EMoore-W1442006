@@ -3,8 +3,14 @@
     using Controllers;
     using System.Windows.Forms;
 
+    /// <summary>
+    /// An instance of a <see cref="Report"/> view
+    /// </summary>
     public partial class Report : Form
     {
+        /// <summary>
+        /// Initialises a new <see cref="Report"/> view
+        /// </summary>
         public Report()
         {
             InitializeComponent();

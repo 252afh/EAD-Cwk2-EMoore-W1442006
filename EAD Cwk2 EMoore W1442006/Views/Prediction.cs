@@ -3,8 +3,14 @@
     using Controllers;
     using System.Windows.Forms;
 
+    /// <summary>
+    /// An instance of <see cref="Prediction"/> view
+    /// </summary>
     public partial class Prediction : Form
     {
+        /// <summary>
+        /// Initialises a new <see cref="Prediction"/> view
+        /// </summary>
         public Prediction()
         {
             InitializeComponent();

@@ -3,9 +3,14 @@
     using Controllers;
     using System.Windows.Forms;
 
+    /// <summary>
+    /// An instance of <see cref="IncomeEdit"/> used to edit <see cref="Models.Income"/> records
+    /// </summary>
     public partial class IncomeEdit : Form
     {
-
+        /// <summary>
+        /// Initialises a new <see cref="IncomeEdit"/> view
+        /// </summary>
         public IncomeEdit()
         {
             InitializeComponent();

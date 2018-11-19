@@ -2,11 +2,14 @@
 {
     using System.Xml.Serialization;
 
+    /// <summary>
+    /// An instance of <see cref="Income"/> used to store information about incomes
+    /// </summary>
     [XmlRoot("income")]
     public class Income : Payment
     {
         /// <summary>
-        /// The <see cref="Payer"/> related to the income payment
+        /// The <see cref="Models.Payer"/> related to the income payment
         /// </summary>
         [XmlAttribute("Payer")]
         public Payer Payer { get; set; }

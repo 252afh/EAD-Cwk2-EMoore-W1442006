@@ -53,7 +53,7 @@
             // TotalIncomeLabel
             // 
             this.TotalIncomeLabel.AutoSize = true;
-            this.TotalIncomeLabel.Location = new System.Drawing.Point(147, 162);
+            this.TotalIncomeLabel.Location = new System.Drawing.Point(286, 172);
             this.TotalIncomeLabel.Name = "TotalIncomeLabel";
             this.TotalIncomeLabel.Size = new System.Drawing.Size(71, 13);
             this.TotalIncomeLabel.TabIndex = 1;
@@ -61,14 +61,14 @@
             // 
             // TotalIncomeText
             // 
-            this.TotalIncomeText.Location = new System.Drawing.Point(224, 159);
+            this.TotalIncomeText.Location = new System.Drawing.Point(363, 169);
             this.TotalIncomeText.Name = "TotalIncomeText";
             this.TotalIncomeText.Size = new System.Drawing.Size(100, 20);
             this.TotalIncomeText.TabIndex = 2;
             // 
             // TotalExpenseText
             // 
-            this.TotalExpenseText.Location = new System.Drawing.Point(224, 185);
+            this.TotalExpenseText.Location = new System.Drawing.Point(363, 195);
             this.TotalExpenseText.Name = "TotalExpenseText";
             this.TotalExpenseText.Size = new System.Drawing.Size(100, 20);
             this.TotalExpenseText.TabIndex = 4;
@@ -76,7 +76,7 @@
             // TotalExpensesLabel
             // 
             this.TotalExpensesLabel.AutoSize = true;
-            this.TotalExpensesLabel.Location = new System.Drawing.Point(136, 188);
+            this.TotalExpensesLabel.Location = new System.Drawing.Point(275, 198);
             this.TotalExpensesLabel.Name = "TotalExpensesLabel";
             this.TotalExpensesLabel.Size = new System.Drawing.Size(82, 13);
             this.TotalExpensesLabel.TabIndex = 3;
@@ -84,7 +84,7 @@
             // 
             // IncomeCountText
             // 
-            this.IncomeCountText.Location = new System.Drawing.Point(224, 211);
+            this.IncomeCountText.Location = new System.Drawing.Point(363, 221);
             this.IncomeCountText.Name = "IncomeCountText";
             this.IncomeCountText.Size = new System.Drawing.Size(100, 20);
             this.IncomeCountText.TabIndex = 6;
@@ -92,7 +92,7 @@
             // CountOfIncomeLabel
             // 
             this.CountOfIncomeLabel.AutoSize = true;
-            this.CountOfIncomeLabel.Location = new System.Drawing.Point(131, 214);
+            this.CountOfIncomeLabel.Location = new System.Drawing.Point(270, 224);
             this.CountOfIncomeLabel.Name = "CountOfIncomeLabel";
             this.CountOfIncomeLabel.Size = new System.Drawing.Size(87, 13);
             this.CountOfIncomeLabel.TabIndex = 5;
@@ -100,7 +100,7 @@
             // 
             // ExpenseCountText
             // 
-            this.ExpenseCountText.Location = new System.Drawing.Point(224, 237);
+            this.ExpenseCountText.Location = new System.Drawing.Point(363, 247);
             this.ExpenseCountText.Name = "ExpenseCountText";
             this.ExpenseCountText.Size = new System.Drawing.Size(100, 20);
             this.ExpenseCountText.TabIndex = 8;
@@ -108,7 +108,7 @@
             // CountOfExpensesLabel
             // 
             this.CountOfExpensesLabel.AutoSize = true;
-            this.CountOfExpensesLabel.Location = new System.Drawing.Point(120, 240);
+            this.CountOfExpensesLabel.Location = new System.Drawing.Point(259, 250);
             this.CountOfExpensesLabel.Name = "CountOfExpensesLabel";
             this.CountOfExpensesLabel.Size = new System.Drawing.Size(98, 13);
             this.CountOfExpensesLabel.TabIndex = 7;

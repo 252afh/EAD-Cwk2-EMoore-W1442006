@@ -1,4 +1,6 @@
-﻿namespace EAD_Cwk2_EMoore_W1442006.DataAccess
+﻿using System.IO;
+
+namespace EAD_Cwk2_EMoore_W1442006.DataAccess
 {
     using Helpers;
     using Models;
@@ -8,23 +10,41 @@
     using System.Linq;
     using System.Xml.Linq;
 
+    /// <summary>
+    /// An instance of <see cref="XmlDataAccess"/> used to handle all logic regarding XML data storage
+    /// </summary>
     public class XmlDataAccess
     {
+        /// <summary>
+        /// Handles loading <see cref="Payer"/> objects from XML
+        /// </summary>
+        /// <param name="data">The XElement containing all stored data</param>
         private void LoadPayers(XElement data)
         {
-            IEnumerable<XElement> payers = data.Element("Payers").Elements();
-
-            foreach (var payer in payers)
+            try
             {
-                ListAccessHelper.PayerList.Add(new Payer
+                IEnumerable<XElement> payers = data.Element("Payers").Elements();
+
+                foreach (var payer in payers)
                 {
-                    Name = payer.Attribute("Name")?.Value,
-                    Id = Guid.Parse(payer.Attribute("Id")?.Value ?? throw new NullReferenceException()),
-                    PaymentType = payer.Attribute("Type")?.Value
-                });
+                    ListAccessHelper.PayerList.Add(new Payer
+                    {
+                        Name = payer.Attribute("Name")?.Value,
+                        Id = Guid.Parse(payer.Attribute("Id")?.Value ?? throw new NullReferenceException()),
+                        PaymentType = payer.Attribute("Type")?.Value
+                    });
+                }
+            }
+            catch (NullReferenceException ex)
+            {
+                ErrorHelper.SendError(ex);
             }
         }
 
+        /// <summary>
+        /// Handles loading <see cref="Payee"/> objects from XML
+        /// </summary>
+        /// <param name="data">The XElement containing all stored data</param>
         private void LoadPayees(XElement data)
         {
             try
@@ -45,10 +65,14 @@
             }
             catch (NullReferenceException ex)
             {
-                new ErrorHelper().SendError(ex);
+                ErrorHelper.SendError(ex);
             }
         }
 
+        /// <summary>
+        /// Handles loading <see cref="Income"/> objects from XML
+        /// </summary>
+        /// <param name="data">The XElement containing all stored data</param>
         private void LoadIncome(XElement data)
         {
             try
@@ -72,10 +96,14 @@
             }
             catch (NullReferenceException ex)
             {
-                new ErrorHelper().SendError(ex);
+                ErrorHelper.SendError(ex);
             }
         }
 
+        /// <summary>
+        /// Handles loading <see cref="Expense"/> objects from XML
+        /// </summary>
+        /// <param name="data">The XElement containing all stored data</param>
         private void LoadExpense(XElement data)
         {
             try
@@ -99,21 +127,41 @@
             }
             catch (NullReferenceException ex)
             {
-                new ErrorHelper().SendError(ex);
+                ErrorHelper.SendError(ex);
             }
         }
 
+        /// <summary>
+        /// Handles setting the url and loading the XElement containg all stored data
+        /// </summary>
         public void LoadXml()
         {
-            var url = Settings.Default.XMLLocation;
-            var data = XElement.Load(url);
-            
-            LoadPayers(data);
-            LoadPayees(data);
-            LoadIncome(data);
-            LoadExpense(data);
+            try
+            {
+                var url = Settings.Default.XMLLocation;
+                var data = XElement.Load(url);
+
+                LoadPayers(data);
+                LoadPayees(data);
+                LoadIncome(data);
+                LoadExpense(data);
+            }
+            catch (Exception ex)
+            {
+                if (ex is FileNotFoundException)
+                {
+                    //swallow as the file will be created on save   
+                }
+                else
+                {
+                    ErrorHelper.SendError(ex);
+                }
+            }
         }
 
+        /// <summary>
+        /// Handles saving all lists back into XML
+        /// </summary>
         public void SaveXml()
         {
             var saveData = new XElement("Data",
@@ -126,6 +174,10 @@
             saveData.Save(Settings.Default.XMLLocation);
         }
 
+        /// <summary>
+        /// Handles constructing the <see cref="Payer"/> XElement
+        /// </summary>
+        /// <returns>An XElement containing all <see cref="Payer"/> objects</returns>
         private XElement PayersElement()
         {
             return new XElement("Payers", ListAccessHelper.PayerList.Select(payer =>
@@ -135,6 +187,10 @@
                     new XAttribute("Type", payer.PaymentType))));
         }
 
+        /// <summary>
+        /// Handles constructing the <see cref="Payee"/> XElement
+        /// </summary>
+        /// <returns>An XElement containing all <see cref="Payee"/> objects</returns>
         private XElement PayeesElement()
         {
             return new XElement("Payees", ListAccessHelper.PayeeList.Select(payee =>
@@ -146,6 +202,10 @@
                     new XAttribute("Address", payee.Address))));
         }
 
+        /// <summary>
+        /// Handles constructing the <see cref="Income"/> XElement
+        /// </summary>
+        /// <returns>An XElement containing all <see cref="Income"/> objects</returns>
         private XElement IncomeElement()
         {
             return new XElement("Incomes", ListAccessHelper.IncomeList.Select(income =>
@@ -161,6 +221,10 @@
 
         }
 
+        /// <summary>
+        /// Handles constructing the <see cref="Expense"/> XElement
+        /// </summary>
+        /// <returns>An XElement containing all <see cref="Expense"/> objects</returns>
         private XElement ExpensesElement()
         {
             return new XElement("Expenses", ListAccessHelper.ExpenseList.Select(expense =>

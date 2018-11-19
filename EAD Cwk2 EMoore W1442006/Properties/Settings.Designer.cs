@@ -49,7 +49,7 @@ namespace EAD_Cwk2_EMoore_W1442006.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\\\Users\\\\Elliot\\\\Documents\\\\SaveFile.xml")]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\\\..\\\\..\\\\SaveFile.xml")]
         public string XMLLocation {
             get {
                 return ((string)(this["XMLLocation"]));

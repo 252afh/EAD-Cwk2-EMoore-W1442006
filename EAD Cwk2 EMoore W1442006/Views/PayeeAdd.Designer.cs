@@ -71,7 +71,7 @@
             // NameLabel
             // 
             this.NameLabel.AutoSize = true;
-            this.NameLabel.Location = new System.Drawing.Point(326, 153);
+            this.NameLabel.Location = new System.Drawing.Point(353, 153);
             this.NameLabel.Name = "NameLabel";
             this.NameLabel.Size = new System.Drawing.Size(38, 13);
             this.NameLabel.TabIndex = 6;
@@ -80,7 +80,7 @@
             // SortCodeLabel
             // 
             this.SortCodeLabel.AutoSize = true;
-            this.SortCodeLabel.Location = new System.Drawing.Point(308, 205);
+            this.SortCodeLabel.Location = new System.Drawing.Point(335, 205);
             this.SortCodeLabel.Name = "SortCodeLabel";
             this.SortCodeLabel.Size = new System.Drawing.Size(56, 13);
             this.SortCodeLabel.TabIndex = 7;
@@ -89,7 +89,7 @@
             // AccNumberLabel
             // 
             this.AccNumberLabel.AutoSize = true;
-            this.AccNumberLabel.Location = new System.Drawing.Point(276, 232);
+            this.AccNumberLabel.Location = new System.Drawing.Point(303, 232);
             this.AccNumberLabel.Name = "AccNumberLabel";
             this.AccNumberLabel.Size = new System.Drawing.Size(88, 13);
             this.AccNumberLabel.TabIndex = 8;
@@ -121,7 +121,7 @@
             // addressLabel
             // 
             this.addressLabel.AutoSize = true;
-            this.addressLabel.Location = new System.Drawing.Point(316, 179);
+            this.addressLabel.Location = new System.Drawing.Point(343, 179);
             this.addressLabel.Name = "addressLabel";
             this.addressLabel.Size = new System.Drawing.Size(48, 13);
             this.addressLabel.TabIndex = 12;

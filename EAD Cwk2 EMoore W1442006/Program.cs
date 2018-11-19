@@ -5,6 +5,9 @@
     using System.Windows.Forms;
     using Views;
 
+    /// <summary>
+    /// The main execution class
+    /// </summary>
     internal static class Program
     {
         /// <summary>

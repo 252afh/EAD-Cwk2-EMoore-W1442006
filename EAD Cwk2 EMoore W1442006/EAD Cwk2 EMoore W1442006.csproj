@@ -213,8 +213,6 @@
       <DependentUpon>Report.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
-    <None Include="Properties\DataSources\EAD_Cwk2_EMoore_W1442006.Helpers.ListAccessHelper.datasource" />
-    <None Include="Properties\DataSources\EAD_Cwk2_EMoore_W1442006.Models.Payer.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -3,8 +3,14 @@
     using Controllers;
     using System.Windows.Forms;
 
+    /// <summary>
+    /// An instance of <see cref="ExpenseView"/> used to view current <see cref="Models.Expense"/> records
+    /// </summary>
     public partial class ExpenseView : Form
     {
+        /// <summary>
+        /// Initialises a new instance of <see cref="ExpenseView"/> view
+        /// </summary>
         public ExpenseView()
         {
             InitializeComponent();

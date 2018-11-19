@@ -3,8 +3,14 @@
     using Controllers;
     using System.Windows.Forms;
 
+    /// <summary>
+    /// An instance of <see cref="Payer"/> view used to view existing <see cref="Models.Payer"/> records
+    /// </summary>
     public partial class Payer : Form
     {
+        /// <summary>
+        /// Initialises a new <see cref="Payer"/> view
+        /// </summary>
         public Payer()
         {
             InitializeComponent();

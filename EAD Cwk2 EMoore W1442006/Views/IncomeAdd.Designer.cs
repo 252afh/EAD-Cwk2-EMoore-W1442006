@@ -119,11 +119,11 @@
             // IntervalLabel
             // 
             this.IntervalLabel.AutoSize = true;
-            this.IntervalLabel.Location = new System.Drawing.Point(165, 223);
+            this.IntervalLabel.Location = new System.Drawing.Point(182, 223);
             this.IntervalLabel.Name = "IntervalLabel";
-            this.IntervalLabel.Size = new System.Drawing.Size(143, 13);
+            this.IntervalLabel.Size = new System.Drawing.Size(126, 13);
             this.IntervalLabel.TabIndex = 14;
-            this.IntervalLabel.Text = "How often to occur (in days):";
+            this.IntervalLabel.Text = "Days between payments:";
             this.IntervalLabel.Visible = false;
             // 
             // RecurringCheckbox

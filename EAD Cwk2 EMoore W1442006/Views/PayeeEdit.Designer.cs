@@ -80,7 +80,7 @@
             // addressLabel
             // 
             this.addressLabel.AutoSize = true;
-            this.addressLabel.Location = new System.Drawing.Point(330, 205);
+            this.addressLabel.Location = new System.Drawing.Point(357, 205);
             this.addressLabel.Name = "addressLabel";
             this.addressLabel.Size = new System.Drawing.Size(48, 13);
             this.addressLabel.TabIndex = 20;
@@ -112,7 +112,7 @@
             // AccNumberLabel
             // 
             this.AccNumberLabel.AutoSize = true;
-            this.AccNumberLabel.Location = new System.Drawing.Point(290, 258);
+            this.AccNumberLabel.Location = new System.Drawing.Point(317, 258);
             this.AccNumberLabel.Name = "AccNumberLabel";
             this.AccNumberLabel.Size = new System.Drawing.Size(88, 13);
             this.AccNumberLabel.TabIndex = 16;
@@ -121,7 +121,7 @@
             // SortCodeLabel
             // 
             this.SortCodeLabel.AutoSize = true;
-            this.SortCodeLabel.Location = new System.Drawing.Point(322, 231);
+            this.SortCodeLabel.Location = new System.Drawing.Point(349, 231);
             this.SortCodeLabel.Name = "SortCodeLabel";
             this.SortCodeLabel.Size = new System.Drawing.Size(56, 13);
             this.SortCodeLabel.TabIndex = 15;
@@ -130,7 +130,7 @@
             // NameLabel
             // 
             this.NameLabel.AutoSize = true;
-            this.NameLabel.Location = new System.Drawing.Point(340, 179);
+            this.NameLabel.Location = new System.Drawing.Point(367, 179);
             this.NameLabel.Name = "NameLabel";
             this.NameLabel.Size = new System.Drawing.Size(38, 13);
             this.NameLabel.TabIndex = 14;
@@ -147,7 +147,7 @@
             // PayeeLabel
             // 
             this.PayeeLabel.AutoSize = true;
-            this.PayeeLabel.Location = new System.Drawing.Point(341, 47);
+            this.PayeeLabel.Location = new System.Drawing.Point(368, 46);
             this.PayeeLabel.Name = "PayeeLabel";
             this.PayeeLabel.Size = new System.Drawing.Size(37, 13);
             this.PayeeLabel.TabIndex = 23;

@@ -153,11 +153,11 @@
             // IntervalLabel
             // 
             this.IntervalLabel.AutoSize = true;
-            this.IntervalLabel.Location = new System.Drawing.Point(226, 272);
+            this.IntervalLabel.Location = new System.Drawing.Point(240, 272);
             this.IntervalLabel.Name = "IntervalLabel";
-            this.IntervalLabel.Size = new System.Drawing.Size(143, 13);
+            this.IntervalLabel.Size = new System.Drawing.Size(126, 13);
             this.IntervalLabel.TabIndex = 29;
-            this.IntervalLabel.Text = "How often to occur (in days):";
+            this.IntervalLabel.Text = "Days between payments:";
             this.IntervalLabel.Visible = false;
             // 
             // PayerLabel

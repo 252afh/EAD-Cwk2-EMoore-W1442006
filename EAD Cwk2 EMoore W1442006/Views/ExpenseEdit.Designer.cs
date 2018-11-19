@@ -111,11 +111,11 @@
             // IntervalLabel
             // 
             this.IntervalLabel.AutoSize = true;
-            this.IntervalLabel.Location = new System.Drawing.Point(291, 292);
+            this.IntervalLabel.Location = new System.Drawing.Point(210, 292);
             this.IntervalLabel.Name = "IntervalLabel";
-            this.IntervalLabel.Size = new System.Drawing.Size(45, 13);
+            this.IntervalLabel.Size = new System.Drawing.Size(126, 13);
             this.IntervalLabel.TabIndex = 14;
-            this.IntervalLabel.Text = "Interval:";
+            this.IntervalLabel.Text = "Days between payments:";
             this.IntervalLabel.Visible = false;
             // 
             // IntervalText
@@ -142,11 +142,11 @@
             // AmountLabel
             // 
             this.AmountLabel.AutoSize = true;
-            this.AmountLabel.Location = new System.Drawing.Point(290, 171);
+            this.AmountLabel.Location = new System.Drawing.Point(278, 171);
             this.AmountLabel.Name = "AmountLabel";
-            this.AmountLabel.Size = new System.Drawing.Size(46, 13);
+            this.AmountLabel.Size = new System.Drawing.Size(58, 13);
             this.AmountLabel.TabIndex = 16;
-            this.AmountLabel.Text = "Amount:";
+            this.AmountLabel.Text = "Amount(£):";
             // 
             // PayeeLabel
             // 

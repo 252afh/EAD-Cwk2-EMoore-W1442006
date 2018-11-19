@@ -3,8 +3,14 @@
     using Controllers;
     using System.Windows.Forms;
 
+    /// <summary>
+    /// An instance of <see cref="IncomeAdd"/> used to add new <see cref="Models.Income"/> records
+    /// </summary>
     public partial class IncomeAdd : Form
     {
+        /// <summary>
+        /// Initialises a new instance of <see cref="IncomeAdd"/> view
+        /// </summary>
         public IncomeAdd()
         {
             InitializeComponent();

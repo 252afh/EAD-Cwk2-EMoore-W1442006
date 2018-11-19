@@ -2,6 +2,9 @@
 {
     using System.Xml.Serialization;
 
+    /// <summary>
+    /// An instance of <see cref="Payer"/> used to store information about payers
+    /// </summary>
     [XmlRoot("payer")]
     public class Payer : Contact
     {

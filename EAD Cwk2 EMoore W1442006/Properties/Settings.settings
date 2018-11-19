@@ -9,7 +9,7 @@
       <Value Profile="(Default)">ye77owdre55</Value>
     </Setting>
     <Setting Name="XMLLocation" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\\Users\\Elliot\\Documents\\SaveFile.xml</Value>
+      <Value Profile="(Default)">..\\..\\..\\SaveFile.xml</Value>
     </Setting>
   </Settings>
 </SettingsFile>

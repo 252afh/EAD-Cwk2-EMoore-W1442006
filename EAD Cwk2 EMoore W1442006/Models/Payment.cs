@@ -3,6 +3,9 @@
     using System;
     using System.Xml.Serialization;
 
+    /// <summary>
+    /// An instance of <see cref="Payment"/> used to store shared properties of <see cref="Income"/> and <see cref="Expense"/> objects
+    /// </summary>
     [Serializable()]
     public class Payment
     {
