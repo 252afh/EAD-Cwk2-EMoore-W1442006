@@ -59,7 +59,7 @@
         }
 
         /// <summary>
-        /// Handles navigating to a <see cref="Payer"/> view
+        /// Handles navigating to a <see cref="PayerView"/> view
         /// </summary>
         /// <param name="sender">The sender object</param>
         /// <param name="e">Event arguments</param>
@@ -67,7 +67,7 @@
         {
             if (PayerController.PayerView == null)
             {
-                PayerController.PayerView = new Payer();
+                PayerController.PayerView = new PayerView();
                 PayerController.PayerView.FormClosed += this.PayerViewOnFormClosed;
             }
 
@@ -76,7 +76,7 @@
         }
 
         /// <summary>
-        /// Handles closing a <see cref="Payer"/> view
+        /// Handles closing a <see cref="PayerView"/> view
         /// </summary>
         /// <param name="sender">The sender object</param>
         /// <param name="e">Event arguments</param>

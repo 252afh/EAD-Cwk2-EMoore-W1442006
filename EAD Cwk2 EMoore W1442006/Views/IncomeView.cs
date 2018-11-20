@@ -18,6 +18,7 @@
             this.EditIncomeButton.Click += IncomeController.EditButtonClicked;
             this.AddIncomeButton.Click += IncomeController.AddButtonClicked;
             this.VisibleChanged += IncomeController.ViewVisibleChanged;
+            this.DeleteButton.Click += IncomeController.DeleteIncome;
         }
     }
 }

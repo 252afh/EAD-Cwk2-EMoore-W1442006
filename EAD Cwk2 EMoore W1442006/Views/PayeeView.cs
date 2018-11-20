@@ -18,6 +18,7 @@
             this.addPayee.Click += PayeeController.AddPayeeClick;
             this.backButton.Click += PayeeController.BackClick;
             this.VisibleChanged += PayeeController.ViewVisibleChanged;
+            this.DeleteButton.Click += PayeeController.DeletePayee;
         }
     }
 }

@@ -43,6 +43,9 @@
             this.RecurringExpensesLabel = new System.Windows.Forms.Label();
             this.BalanceOnDateText = new System.Windows.Forms.TextBox();
             this.BalanceOnDateLabel = new System.Windows.Forms.Label();
+            this.IncludeRecurring = new System.Windows.Forms.CheckBox();
+            this.PercentageIncreaseLabel = new System.Windows.Forms.Label();
+            this.PercentageIncreaseText = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // BackButton
@@ -183,11 +186,45 @@
             this.BalanceOnDateLabel.TabIndex = 14;
             this.BalanceOnDateLabel.Text = "Balance on date:";
             // 
+            // IncludeRecurring
+            // 
+            this.IncludeRecurring.AutoSize = true;
+            this.IncludeRecurring.Checked = true;
+            this.IncludeRecurring.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.IncludeRecurring.Location = new System.Drawing.Point(355, 81);
+            this.IncludeRecurring.Name = "IncludeRecurring";
+            this.IncludeRecurring.Size = new System.Drawing.Size(153, 17);
+            this.IncludeRecurring.TabIndex = 15;
+            this.IncludeRecurring.Text = "Include recurring payments";
+            this.IncludeRecurring.UseVisualStyleBackColor = true;
+            // 
+            // PercentageIncreaseLabel
+            // 
+            this.PercentageIncreaseLabel.AutoSize = true;
+            this.PercentageIncreaseLabel.Location = new System.Drawing.Point(241, 319);
+            this.PercentageIncreaseLabel.Name = "PercentageIncreaseLabel";
+            this.PercentageIncreaseLabel.Size = new System.Drawing.Size(108, 13);
+            this.PercentageIncreaseLabel.TabIndex = 17;
+            this.PercentageIncreaseLabel.Text = "Percentage increase:";
+            // 
+            // PercentageIncreaseText
+            // 
+            this.PercentageIncreaseText.Enabled = false;
+            this.PercentageIncreaseText.Location = new System.Drawing.Point(355, 316);
+            this.PercentageIncreaseText.Name = "PercentageIncreaseText";
+            this.PercentageIncreaseText.Size = new System.Drawing.Size(100, 20);
+            this.PercentageIncreaseText.TabIndex = 16;
+            this.PercentageIncreaseText.TabStop = false;
+            this.PercentageIncreaseText.Text = "0";
+            // 
             // Prediction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.PercentageIncreaseLabel);
+            this.Controls.Add(this.PercentageIncreaseText);
+            this.Controls.Add(this.IncludeRecurring);
             this.Controls.Add(this.BalanceOnDateLabel);
             this.Controls.Add(this.BalanceOnDateText);
             this.Controls.Add(this.RecurringExpensesLabel);
@@ -227,5 +264,8 @@
         public System.Windows.Forms.TextBox OneOffExpensesText;
         public System.Windows.Forms.TextBox RecurringExpensesText;
         public System.Windows.Forms.TextBox BalanceOnDateText;
+        public System.Windows.Forms.CheckBox IncludeRecurring;
+        private System.Windows.Forms.Label PercentageIncreaseLabel;
+        public System.Windows.Forms.TextBox PercentageIncreaseText;
     }
 }

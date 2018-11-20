@@ -64,6 +64,8 @@
         /// </summary>
         private static decimal CurrentBalance { get; } = ListAccessHelper.Balance;
 
+        private static decimal PredictedTotal { get; set; }
+
         /// <summary>
         /// Handles the back button being clicked on a <see cref="Prediction"/> form
         /// </summary>
@@ -127,10 +129,13 @@
 
             var percentageIncreased = currentWithoutRecurring * PercentageGain;
 
-            var predictedTotal = percentageIncreased - RecurringExpenseAfter;
-            predictedTotal += RecurringIncomeAfter;
+            var percentage = percentageIncreased * 100;
 
-            PredictionView.BalanceOnDateText.Text = predictedTotal.ToString("C");
+            PredictedTotal = percentageIncreased - RecurringExpenseAfter;
+            PredictedTotal += RecurringIncomeAfter;
+
+            PredictionView.PercentageIncreaseText.Text = percentage.ToString("P");
+            PredictionView.BalanceOnDateText.Text = PredictedTotal.ToString("C");
             PredictionView.DaysToPredictionText.Text = (PeriodEnd - DateTime.UtcNow).Days.ToString() + " days";
             PredictionView.OneOffExpensesText.Text = NonRecurringExpenseBefore.ToString("C");
             PredictionView.OneOffIncomeText.Text = NonRecurringIncomeBefore.ToString("C");
@@ -149,7 +154,7 @@
         {
             if (previous == 0)
             {
-                return 0.00m;
+                return 1.00m;
             }
 
             var change = current - previous;
@@ -326,6 +331,29 @@
             }
 
             return recurringIncomeBeforeTotal;
+        }
+
+        /// <summary>
+        /// Handles switching total balance to include or not include recurring <see cref="Models.Income"/> and <see cref="Models.Expense"/>
+        /// </summary>
+        /// <param name="sender">The sender object</param>
+        /// <param name="e">Event argument</param>
+        public static void SwitchRecurring(object sender, EventArgs e)
+        {
+            var includeRecurring = PredictionView.IncludeRecurring.Checked;
+
+            if (includeRecurring)
+            {
+                PredictedTotal += RecurringIncomeAfter;
+                PredictedTotal -= RecurringExpenseAfter;
+            }
+            else
+            {
+                PredictedTotal -= RecurringIncomeAfter;
+                PredictedTotal += RecurringExpenseAfter;
+            }
+
+            PredictionView.BalanceOnDateText.Text = PredictedTotal.ToString("C");
         }
     }
 }

@@ -131,6 +131,14 @@
         /// <param name="e">Event arguments</param>
         public static void ViewVisibleChanged(object sender, EventArgs e)
         {
+            PopulateListView();
+        }
+
+        /// <summary>
+        /// Populates the list view with <see cref="Expense"/> items
+        /// </summary>
+        private static void PopulateListView()
+        {
             ExpenseView.ExpenseListView.Items.Clear();
 
             foreach (var expense in ListAccessHelper.ExpenseList)
@@ -458,6 +466,35 @@
             ExpenseAdd.IntervalTextBox.Visible = checkState;
             ExpenseAdd.IntervalTextBox.Visible = checkState;
             ExpenseAdd.IntervalLabel.Visible = checkState;
+        }
+
+        /// <summary>
+        /// Handles the deletion of an <see cref="Expense"/>
+        /// </summary>
+        /// <param name="sender">The sender object</param>
+        /// <param name="e">Event arguments</param>
+        public static void DeleteExpense(object sender, EventArgs e)
+        {
+            try
+            {
+                var selectedListItems = ExpenseView.ExpenseListView.SelectedItems;
+
+                if (selectedListItems.Count > 0)
+                {
+                    var selectedItem = selectedListItems[0];
+                    var expenseId = Guid.Parse(selectedItem.SubItems[0].Text);
+                    var expense = ListAccessHelper.FindExpense(expenseId);
+                    
+                    ListAccessHelper.ExpenseList.Remove(expense);
+                    XmlDA.SaveXml();
+                    DA.DeleteExpense(expenseId);
+                    PopulateListView();
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorHelper.SendError(ex);
+            }
         }
     }
 }

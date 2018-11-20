@@ -16,6 +16,7 @@
             InitializeComponent();
             this.BackButton.Click += PredictionController.BackButtonClicked;
             this.PredictionDatePicker.ValueChanged += PredictionController.PredictionDateChanged;
+            this.IncludeRecurring.CheckedChanged += PredictionController.SwitchRecurring;
         }  
     }
 }

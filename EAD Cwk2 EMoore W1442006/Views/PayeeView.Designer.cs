@@ -37,6 +37,7 @@
             this.backButton = new System.Windows.Forms.Button();
             this.editPayee = new System.Windows.Forms.Button();
             this.addPayee = new System.Windows.Forms.Button();
+            this.DeleteButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // payeeListView
@@ -110,11 +111,21 @@
             this.addPayee.Text = "Add payee";
             this.addPayee.UseVisualStyleBackColor = true;
             // 
+            // DeleteButton
+            // 
+            this.DeleteButton.Location = new System.Drawing.Point(369, 415);
+            this.DeleteButton.Name = "DeleteButton";
+            this.DeleteButton.Size = new System.Drawing.Size(90, 23);
+            this.DeleteButton.TabIndex = 5;
+            this.DeleteButton.Text = "Delete payee";
+            this.DeleteButton.UseVisualStyleBackColor = true;
+            // 
             // PayeeViewForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.DeleteButton);
             this.Controls.Add(this.addPayee);
             this.Controls.Add(this.editPayee);
             this.Controls.Add(this.backButton);
@@ -135,5 +146,6 @@
         private System.Windows.Forms.ColumnHeader PayerSortCode;
         private System.Windows.Forms.ColumnHeader PayeeId;
         public System.Windows.Forms.ListView payeeListView;
+        private System.Windows.Forms.Button DeleteButton;
     }
 }

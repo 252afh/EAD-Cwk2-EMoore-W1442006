@@ -18,6 +18,7 @@
             this.EditButton.Click += ExpenseController.EditButtonClicked;
             this.AddButton.Click += ExpenseController.AddButtonClicked;
             this.VisibleChanged += ExpenseController.ViewVisibleChanged;
+            this.DeleteButton.Click += ExpenseController.DeleteExpense;
         }
     }
 }

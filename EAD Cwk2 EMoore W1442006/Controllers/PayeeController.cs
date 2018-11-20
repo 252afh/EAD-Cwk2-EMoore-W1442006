@@ -131,6 +131,14 @@
         /// <param name="e">Event arguments</param>
         public static void ViewVisibleChanged(object sender, EventArgs e)
         {
+            PopulateListView();
+        }
+
+        /// <summary>
+        /// Handles populating the list view with <see cref="Payee"/> items
+        /// </summary>
+        private static void PopulateListView()
+        {
             PayeeView.payeeListView.Items.Clear();
 
             foreach (var payee in ListAccessHelper.PayeeList)
@@ -353,6 +361,35 @@
             PayeeEdit.NameText.Text = string.Empty;
             PayeeEdit.SortCodeText.Text = string.Empty;
             PayeeEdit.addressText.Text = string.Empty;
+        }
+
+        /// <summary>
+        /// Handles deleting a <see cref="Payee"/> item
+        /// </summary>
+        /// <param name="sender">The sender object</param>
+        /// <param name="e">Event arguments</param>
+        public static void DeletePayee(object sender, EventArgs e)
+        {
+            try
+            {
+                var selectedListItems = PayeeView.payeeListView.SelectedItems;
+
+                if (selectedListItems.Count > 0)
+                {
+                    var selectedItem = selectedListItems[0];
+                    var payeeId = Guid.Parse(selectedItem.SubItems[0].Text);
+                    var payee = ListAccessHelper.FindPayee(payeeId);
+
+                    ListAccessHelper.PayeeList.Remove(payee);
+                    XmlDA.SaveXml();
+                    DA.DeletePayee(payeeId);
+                    PopulateListView();
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorHelper.SendError(ex);
+            }
         }
     }
 }

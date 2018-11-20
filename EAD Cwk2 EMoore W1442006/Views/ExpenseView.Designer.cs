@@ -40,6 +40,7 @@
             this.BackButton = new System.Windows.Forms.Button();
             this.EditButton = new System.Windows.Forms.Button();
             this.AddButton = new System.Windows.Forms.Button();
+            this.DeleteButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ExpenseListView
@@ -131,11 +132,21 @@
             this.AddButton.Text = "Add expense";
             this.AddButton.UseVisualStyleBackColor = true;
             // 
+            // DeleteButton
+            // 
+            this.DeleteButton.Location = new System.Drawing.Point(342, 397);
+            this.DeleteButton.Name = "DeleteButton";
+            this.DeleteButton.Size = new System.Drawing.Size(90, 23);
+            this.DeleteButton.TabIndex = 3;
+            this.DeleteButton.Text = "Delete expense";
+            this.DeleteButton.UseVisualStyleBackColor = true;
+            // 
             // ExpenseView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.DeleteButton);
             this.Controls.Add(this.AddButton);
             this.Controls.Add(this.EditButton);
             this.Controls.Add(this.BackButton);
@@ -159,5 +170,6 @@
         private System.Windows.Forms.ColumnHeader lastPaymentColumn;
         private System.Windows.Forms.ColumnHeader ExpenseId;
         public System.Windows.Forms.ListView ExpenseListView;
+        private System.Windows.Forms.Button DeleteButton;
     }
 }

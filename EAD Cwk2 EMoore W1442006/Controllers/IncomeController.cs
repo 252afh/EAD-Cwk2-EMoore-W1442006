@@ -66,7 +66,7 @@
                 IncomeEdit.FormClosed += IncomeEditViewOnFormClosed;
             }
 
-            var selectedListItems = IncomeView.listView1.SelectedItems;
+            var selectedListItems = IncomeView.IncomeListView.SelectedItems;
 
             if (selectedListItems.Count > 0)
             {
@@ -131,17 +131,25 @@
         /// <param name="e">Event arguments</param>
         public static void ViewVisibleChanged(object sender, EventArgs e)
         {
-            IncomeView.listView1.Items.Clear();
+            PopulateListView();
+        }
+
+        /// <summary>
+        /// Handles populating the list view with <see cref="Income"/> items
+        /// </summary>
+        private static void PopulateListView()
+        {
+            IncomeView.IncomeListView.Items.Clear();
 
             foreach (var income in ListAccessHelper.IncomeList)
             {
-                IncomeView.listView1.Items.Add(new ListViewItem(new[]
+                IncomeView.IncomeListView.Items.Add(new ListViewItem(new[]
                 {
                     income.Id.ToString(),
                     income.Amount.ToString("C"),
                     income.Payer.Name,
                     income.Payer.PaymentType,
-                    income.IsRecurring? "Yes" : "No",
+                    income.IsRecurring ? "Yes" : "No",
                     income.InitialPaidDate.ToShortDateString(),
                     income.Ref,
                     income.IsRecurring ? income.Interval.ToString() + " days" : "-",
@@ -459,6 +467,35 @@
             IncomeAdd.IntervalTextBox.Text = string.Empty;
             IncomeAdd.PayerDropDown.SelectedIndex = 0;
             IncomeAdd.ReferenceText.Text = string.Empty;
+        }
+
+        /// <summary>
+        /// Handles deleting an <see cref="Income"/> record
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public static void DeleteIncome(object sender, EventArgs e)
+        {
+            try
+            {
+                var selectedListItems = IncomeView.IncomeListView.SelectedItems;
+
+                if (selectedListItems.Count > 0)
+                {
+                    var selectedItem = selectedListItems[0];
+                    var incomeId = Guid.Parse(selectedItem.SubItems[0].Text);
+                    var income = ListAccessHelper.FindIncome(incomeId);
+
+                    ListAccessHelper.IncomeList.Remove(income);
+                    XmlDA.SaveXml();
+                    DA.DeleteIncome(incomeId);
+                    PopulateListView();
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorHelper.SendError(ex);
+            }
         }
     }
 }

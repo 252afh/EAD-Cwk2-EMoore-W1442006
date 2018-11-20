@@ -491,5 +491,117 @@
                 ErrorHelper.SendError(ex);
             }
         }
+
+        /// <summary>
+        /// Handles deleting an <see cref="Expense"/> record in the database
+        /// </summary>
+        /// <param name="id">The id of the <see cref="Expense"/> to delete</param>
+        public async void DeleteExpense(Guid id)
+        {
+            try
+            {
+                using (Conn)
+                using (var comm = Conn.CreateCommand())
+                {
+                    await Conn.OpenAsync();
+
+                    comm.CommandText = "DELETE FROM expense WHERE Id=@Id";
+                    
+                    comm.Parameters.AddWithValue("@Id", id);
+
+                    await comm.ExecuteNonQueryAsync();
+
+                    await Conn.CloseAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorHelper.SendError(ex);
+            }
+        }
+
+        /// <summary>
+        /// Handles deleting an <see cref="Income"/> record in the database
+        /// </summary>
+        /// <param name="incomeId">The id of the <see cref="Income"/> to delete</param>
+        public async void DeleteIncome(Guid incomeId)
+        {
+            try
+            {
+                using (Conn)
+                using (var comm = Conn.CreateCommand())
+                {
+                    await Conn.OpenAsync();
+
+                    comm.CommandText = "DELETE FROM income WHERE Id=@Id";
+
+                    comm.Parameters.AddWithValue("@Id", incomeId);
+
+                    await comm.ExecuteNonQueryAsync();
+
+                    await Conn.CloseAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorHelper.SendError(ex);
+            }
+        }
+
+        /// <summary>
+        /// Handles deleting an <see cref="Payee"/> record in the database
+        /// </summary>
+        /// <param name="payeeId">The id of the <see cref="Payee"/> to delete</param>
+        public async void DeletePayee(Guid payeeId)
+        {
+            try
+            {
+                using (Conn)
+                using (var comm = Conn.CreateCommand())
+                {
+                    await Conn.OpenAsync();
+
+                    comm.CommandText = "DELETE FROM payee WHERE Id=@Id";
+
+                    comm.Parameters.AddWithValue("@Id", payeeId);
+
+                    await comm.ExecuteNonQueryAsync();
+
+                    await Conn.CloseAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorHelper.SendError(ex);
+            }
+        }
+
+        /// <summary>
+        /// Handles deleting an <see cref="Payer"/> record in the database
+        /// </summary>
+        /// <param name="payerId">The id of the <see cref="Payer"/> to delete</param>
+        public async void DeletePayer(Guid payerId)
+        {
+            try
+            {
+                using (Conn)
+                using (var comm = Conn.CreateCommand())
+                {
+                    await Conn.OpenAsync();
+
+                    comm.CommandText = "DELETE FROM payer WHERE Id=@Id";
+
+                    comm.Parameters.AddWithValue("@Id", payerId);
+
+                    await comm.ExecuteNonQueryAsync();
+
+                    await Conn.CloseAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorHelper.SendError(ex);
+            }
+        }
     }
 }

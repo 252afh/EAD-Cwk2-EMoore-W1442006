@@ -28,9 +28,9 @@
         private static PayersAdd PayersAdd { get; set; }
 
         /// <summary>
-        /// An instance of <see cref="Views.Payer"/> class view
+        /// An instance of <see cref="Views.PayerView"/> class view
         /// </summary>
-        public static Views.Payer PayerView { get; set; }
+        public static Views.PayerView PayerView { get; set; }
 
         /// <summary>
         /// An instance of <see cref="DatabaseDataAccess"/> used for database interactions
@@ -232,7 +232,7 @@
         }
 
         /// <summary>
-        /// Handles the back buton being pressed on a <see cref="Views.Payer"/> form
+        /// Handles the back buton being pressed on a <see cref="Views.PayerView"/> form
         /// </summary>
         /// <param name="sender">The sender object</param>
         /// <param name="e">Event arguments</param>
@@ -243,7 +243,7 @@
         }
 
         /// <summary>
-        /// Handles a new <see cref="Views.PayersEdit"/> form being opened from a <see cref="Views.Payer"/> form
+        /// Handles a new <see cref="Views.PayersEdit"/> form being opened from a <see cref="Views.PayerView"/> form
         /// </summary>
         /// <param name="sender">The sender object</param>
         /// <param name="e">Event arguments</param>
@@ -286,7 +286,7 @@
         }
 
         /// <summary>
-        /// Handles a <see cref="Views.PayersAdd"/> form being opened from a <see cref="Views.Payer"/> form
+        /// Handles a <see cref="Views.PayersAdd"/> form being opened from a <see cref="Views.PayerView"/> form
         /// </summary>
         /// <param name="sender">The sender object</param>
         /// <param name="e">Event arguments</param>
@@ -314,17 +314,55 @@
         }
 
         /// <summary>
-        /// Handles the visibility of a <see cref="Views.Payer"/> form being changed
+        /// Handles the visibility of a <see cref="Views.PayerView"/> form being changed
         /// </summary>
         /// <param name="sender">The sender object</param>
         /// <param name="e">Event arguments</param>
         public static void ViewVisibleChanged(object sender, EventArgs e)
         {
+            PopulateListView();
+        }
+
+        /// <summary>
+        /// Handles populating the list view with <see cref="Payer"/> items
+        /// </summary>
+        private static void PopulateListView()
+        {
             PayerView.PayerListView.Items.Clear();
 
             foreach (var payer in ListAccessHelper.PayerList)
             {
-                PayerView.PayerListView.Items.Add(new ListViewItem(new[] { payer.Id.ToString(), payer.Name, payer.PaymentType }));
+                PayerView.PayerListView.Items.Add(new ListViewItem(new[]
+                    {payer.Id.ToString(), payer.Name, payer.PaymentType}));
+            }
+        }
+
+        /// <summary>
+        /// Handles deleting a <see cref="Payer"/> record
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public static void DeletePayer(object sender, EventArgs e)
+        {
+            try
+            {
+                var selectedListItems = PayerView.PayerListView.SelectedItems;
+
+                if (selectedListItems.Count > 0)
+                {
+                    var selectedItem = selectedListItems[0];
+                    var payerId = Guid.Parse(selectedItem.SubItems[0].Text);
+                    var payer = ListAccessHelper.FindPayer(payerId);
+
+                    ListAccessHelper.PayerList.Remove(payer);
+                    XmlDA.SaveXml();
+                    DA.DeletePayer(payerId);
+                    PopulateListView();
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorHelper.SendError(ex);
             }
         }
     }

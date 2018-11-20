@@ -4,20 +4,21 @@
     using System.Windows.Forms;
 
     /// <summary>
-    /// An instance of <see cref="Payer"/> view used to view existing <see cref="Models.Payer"/> records
+    /// An instance of <see cref="PayerView"/> view used to view existing <see cref="Models.Payer"/> records
     /// </summary>
-    public partial class Payer : Form
+    public partial class PayerView : Form
     {
         /// <summary>
-        /// Initialises a new <see cref="Payer"/> view
+        /// Initialises a new <see cref="PayerView"/> view
         /// </summary>
-        public Payer()
+        public PayerView()
         {
             InitializeComponent();
             this.BackButton.Click += PayerController.ViewBackButton;
             this.EditPayerButton.Click += PayerController.EditPayerClicked;
             this.AddPayerButton.Click += PayerController.AddPayerClicked;
             this.VisibleChanged += PayerController.ViewVisibleChanged;
+            this.DeleteButton.Click += PayerController.DeletePayer;
         }
     }
 }

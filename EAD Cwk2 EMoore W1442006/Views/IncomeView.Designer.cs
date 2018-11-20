@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.IncomeListView = new System.Windows.Forms.ListView();
             this.IncomeId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Amount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PayerName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -41,12 +41,13 @@
             this.BackButton = new System.Windows.Forms.Button();
             this.EditIncomeButton = new System.Windows.Forms.Button();
             this.AddIncomeButton = new System.Windows.Forms.Button();
+            this.DeleteButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // listView1
+            // IncomeListView
             // 
-            this.listView1.CheckBoxes = true;
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.IncomeListView.CheckBoxes = true;
+            this.IncomeListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.IncomeId,
             this.Amount,
             this.PayerName,
@@ -56,15 +57,15 @@
             this.Reference,
             this.paymentColumn,
             this.lastPaidColumn});
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            this.listView1.Location = new System.Drawing.Point(36, 42);
-            this.listView1.MultiSelect = false;
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(729, 348);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.IncomeListView.FullRowSelect = true;
+            this.IncomeListView.GridLines = true;
+            this.IncomeListView.Location = new System.Drawing.Point(36, 42);
+            this.IncomeListView.MultiSelect = false;
+            this.IncomeListView.Name = "IncomeListView";
+            this.IncomeListView.Size = new System.Drawing.Size(729, 348);
+            this.IncomeListView.TabIndex = 0;
+            this.IncomeListView.UseCompatibleStateImageBehavior = false;
+            this.IncomeListView.View = System.Windows.Forms.View.Details;
             // 
             // IncomeId
             // 
@@ -138,15 +139,25 @@
             this.AddIncomeButton.Text = "Add income";
             this.AddIncomeButton.UseVisualStyleBackColor = true;
             // 
+            // DeleteButton
+            // 
+            this.DeleteButton.Location = new System.Drawing.Point(354, 396);
+            this.DeleteButton.Name = "DeleteButton";
+            this.DeleteButton.Size = new System.Drawing.Size(90, 23);
+            this.DeleteButton.TabIndex = 4;
+            this.DeleteButton.Text = "Delete income";
+            this.DeleteButton.UseVisualStyleBackColor = true;
+            // 
             // IncomeView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.DeleteButton);
             this.Controls.Add(this.AddIncomeButton);
             this.Controls.Add(this.EditIncomeButton);
             this.Controls.Add(this.BackButton);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.IncomeListView);
             this.Name = "IncomeView";
             this.Text = "Income";
             this.ResumeLayout(false);
@@ -166,6 +177,7 @@
         private System.Windows.Forms.ColumnHeader paymentColumn;
         private System.Windows.Forms.ColumnHeader lastPaidColumn;
         private System.Windows.Forms.ColumnHeader IncomeId;
-        public System.Windows.Forms.ListView listView1;
+        public System.Windows.Forms.ListView IncomeListView;
+        private System.Windows.Forms.Button DeleteButton;
     }
 }
