@@ -198,7 +198,7 @@ namespace EAD_Cwk2_EMoore_W1442006.DataAccess
                     new XAttribute("Id", payee.Id),
                     new XAttribute("Name", payee.Name),
                     new XAttribute("AccNumber", payee.AccNumber),
-                    new XAttribute("SortCode", payee.AccNumber),
+                    new XAttribute("SortCode", payee.SortCode),
                     new XAttribute("Address", payee.Address))));
         }
 
