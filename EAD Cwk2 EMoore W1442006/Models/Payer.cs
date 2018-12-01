@@ -1,7 +1,10 @@
-﻿using System.Xml.Serialization;
-
-namespace EAD_Cwk2_EMoore_W1442006.Models
+﻿namespace EAD_Cwk2_EMoore_W1442006.Models
 {
+    using System.Xml.Serialization;
+
+    /// <summary>
+    /// An instance of <see cref="Payer"/> used to store information about payers
+    /// </summary>
     [XmlRoot("payer")]
     public class Payer : Contact
     {

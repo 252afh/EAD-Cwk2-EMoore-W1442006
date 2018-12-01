@@ -49,8 +49,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\ExpenseController.cs" />
+    <Compile Include="Controllers\IncomeController.cs" />
     <Compile Include="Controllers\PayeeController.cs" />
+    <Compile Include="Controllers\PayerController.cs" />
+    <Compile Include="Controllers\PredictionController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="DataAccess\DatabaseDataAccess.cs" />
+    <Compile Include="DataAccess\XmlDataAccess.cs" />
+    <Compile Include="Helpers\ErrorHelper.cs" />
     <Compile Include="Helpers\ListAccessHelper.cs" />
     <Compile Include="Views\ExpenseView.cs">
       <SubType>Form</SubType>
@@ -206,8 +213,6 @@
       <DependentUpon>Report.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
-    <None Include="Properties\DataSources\EAD_Cwk2_EMoore_W1442006.Helpers.ListAccessHelper.datasource" />
-    <None Include="Properties\DataSources\EAD_Cwk2_EMoore_W1442006.Models.Payer.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

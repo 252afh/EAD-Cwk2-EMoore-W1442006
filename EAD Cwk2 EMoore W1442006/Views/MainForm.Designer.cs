@@ -36,7 +36,6 @@
             this.ViewPredictionButton = new System.Windows.Forms.Button();
             this.balanceLabel = new System.Windows.Forms.Label();
             this.balanceBox = new System.Windows.Forms.TextBox();
-            this.SaveButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ViewPayeeButton
@@ -64,7 +63,7 @@
             this.ViewExpensesButton.Location = new System.Drawing.Point(658, 68);
             this.ViewExpensesButton.Name = "ViewExpensesButton";
             this.ViewExpensesButton.Size = new System.Drawing.Size(130, 124);
-            this.ViewExpensesButton.TabIndex = 2;
+            this.ViewExpensesButton.TabIndex = 3;
             this.ViewExpensesButton.Text = "View Expenses";
             this.ViewExpensesButton.UseVisualStyleBackColor = true;
             this.ViewExpensesButton.Click += new System.EventHandler(this.ViewExpensesButton_Click);
@@ -74,7 +73,7 @@
             this.ViewIncomeButton.Location = new System.Drawing.Point(437, 68);
             this.ViewIncomeButton.Name = "ViewIncomeButton";
             this.ViewIncomeButton.Size = new System.Drawing.Size(130, 124);
-            this.ViewIncomeButton.TabIndex = 3;
+            this.ViewIncomeButton.TabIndex = 2;
             this.ViewIncomeButton.Text = "View Income";
             this.ViewIncomeButton.UseVisualStyleBackColor = true;
             this.ViewIncomeButton.Click += new System.EventHandler(this.ViewIncomeButton_Click);
@@ -115,22 +114,11 @@
             this.balanceBox.Size = new System.Drawing.Size(100, 20);
             this.balanceBox.TabIndex = 7;
             // 
-            // SaveButton
-            // 
-            this.SaveButton.Location = new System.Drawing.Point(22, 16);
-            this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(75, 23);
-            this.SaveButton.TabIndex = 8;
-            this.SaveButton.Text = "Save";
-            this.SaveButton.UseVisualStyleBackColor = true;
-            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
-            // 
             // MainMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.balanceBox);
             this.Controls.Add(this.balanceLabel);
             this.Controls.Add(this.ViewPredictionButton);
@@ -141,6 +129,7 @@
             this.Controls.Add(this.ViewPayeeButton);
             this.Name = "MainMenuForm";
             this.Text = "Main Menu";
+            this.Shown += new System.EventHandler(this.MainMenuForm_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -156,7 +145,6 @@
         private System.Windows.Forms.Button ViewPredictionButton;
         private System.Windows.Forms.Label balanceLabel;
         private System.Windows.Forms.TextBox balanceBox;
-        private System.Windows.Forms.Button SaveButton;
     }
 }
 

@@ -46,7 +46,7 @@
             this.SaveAndNewButton.Location = new System.Drawing.Point(12, 71);
             this.SaveAndNewButton.Name = "SaveAndNewButton";
             this.SaveAndNewButton.Size = new System.Drawing.Size(89, 23);
-            this.SaveAndNewButton.TabIndex = 5;
+            this.SaveAndNewButton.TabIndex = 6;
             this.SaveAndNewButton.Text = "Save and new";
             this.SaveAndNewButton.UseVisualStyleBackColor = true;
             // 
@@ -55,25 +55,23 @@
             this.SaveAndBackButton.Location = new System.Drawing.Point(11, 41);
             this.SaveAndBackButton.Name = "SaveAndBackButton";
             this.SaveAndBackButton.Size = new System.Drawing.Size(90, 23);
-            this.SaveAndBackButton.TabIndex = 4;
+            this.SaveAndBackButton.TabIndex = 5;
             this.SaveAndBackButton.Text = "Save and back";
             this.SaveAndBackButton.UseVisualStyleBackColor = true;
-            this.SaveAndBackButton.Click += new System.EventHandler(this.SaveAndBackButton_Click);
             // 
             // CancelButton
             // 
             this.CancelButton.Location = new System.Drawing.Point(12, 12);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(89, 23);
-            this.CancelButton.TabIndex = 3;
+            this.CancelButton.TabIndex = 4;
             this.CancelButton.Text = "Cancel";
             this.CancelButton.UseVisualStyleBackColor = true;
-            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // NameLabel
             // 
             this.NameLabel.AutoSize = true;
-            this.NameLabel.Location = new System.Drawing.Point(326, 153);
+            this.NameLabel.Location = new System.Drawing.Point(353, 153);
             this.NameLabel.Name = "NameLabel";
             this.NameLabel.Size = new System.Drawing.Size(38, 13);
             this.NameLabel.TabIndex = 6;
@@ -82,7 +80,7 @@
             // SortCodeLabel
             // 
             this.SortCodeLabel.AutoSize = true;
-            this.SortCodeLabel.Location = new System.Drawing.Point(308, 205);
+            this.SortCodeLabel.Location = new System.Drawing.Point(335, 205);
             this.SortCodeLabel.Name = "SortCodeLabel";
             this.SortCodeLabel.Size = new System.Drawing.Size(56, 13);
             this.SortCodeLabel.TabIndex = 7;
@@ -91,7 +89,7 @@
             // AccNumberLabel
             // 
             this.AccNumberLabel.AutoSize = true;
-            this.AccNumberLabel.Location = new System.Drawing.Point(276, 232);
+            this.AccNumberLabel.Location = new System.Drawing.Point(303, 232);
             this.AccNumberLabel.Name = "AccNumberLabel";
             this.AccNumberLabel.Size = new System.Drawing.Size(88, 13);
             this.AccNumberLabel.TabIndex = 8;
@@ -102,7 +100,7 @@
             this.NameText.Location = new System.Drawing.Point(397, 150);
             this.NameText.Name = "NameText";
             this.NameText.Size = new System.Drawing.Size(100, 20);
-            this.NameText.TabIndex = 9;
+            this.NameText.TabIndex = 0;
             // 
             // SortCodeText
             // 
@@ -110,7 +108,7 @@
             this.SortCodeText.MaxLength = 6;
             this.SortCodeText.Name = "SortCodeText";
             this.SortCodeText.Size = new System.Drawing.Size(100, 20);
-            this.SortCodeText.TabIndex = 10;
+            this.SortCodeText.TabIndex = 2;
             // 
             // AccNumberText
             // 
@@ -118,12 +116,12 @@
             this.AccNumberText.MaxLength = 8;
             this.AccNumberText.Name = "AccNumberText";
             this.AccNumberText.Size = new System.Drawing.Size(100, 20);
-            this.AccNumberText.TabIndex = 11;
+            this.AccNumberText.TabIndex = 3;
             // 
             // addressLabel
             // 
             this.addressLabel.AutoSize = true;
-            this.addressLabel.Location = new System.Drawing.Point(316, 179);
+            this.addressLabel.Location = new System.Drawing.Point(343, 179);
             this.addressLabel.Name = "addressLabel";
             this.addressLabel.Size = new System.Drawing.Size(48, 13);
             this.addressLabel.TabIndex = 12;
@@ -134,7 +132,7 @@
             this.addressText.Location = new System.Drawing.Point(397, 176);
             this.addressText.Name = "addressText";
             this.addressText.Size = new System.Drawing.Size(100, 20);
-            this.addressText.TabIndex = 13;
+            this.addressText.TabIndex = 1;
             // 
             // PayeeAdd
             // 
@@ -167,10 +165,10 @@
         private System.Windows.Forms.Label NameLabel;
         private System.Windows.Forms.Label SortCodeLabel;
         private System.Windows.Forms.Label AccNumberLabel;
-        private System.Windows.Forms.TextBox NameText;
-        private System.Windows.Forms.TextBox SortCodeText;
-        private System.Windows.Forms.TextBox AccNumberText;
         private System.Windows.Forms.Label addressLabel;
-        private System.Windows.Forms.TextBox addressText;
+        public System.Windows.Forms.TextBox NameText;
+        public System.Windows.Forms.TextBox SortCodeText;
+        public System.Windows.Forms.TextBox AccNumberText;
+        public System.Windows.Forms.TextBox addressText;
     }
 }

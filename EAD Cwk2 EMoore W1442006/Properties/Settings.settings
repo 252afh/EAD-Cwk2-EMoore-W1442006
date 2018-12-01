@@ -3,7 +3,13 @@
   <Profiles />
   <Settings>
     <Setting Name="ConnectionString" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Server=localhost;Port=3306;Database=EAD;Uid=nms;Pwd=Upsetburgess1</Value>
+      <Value Profile="(Default)">Server=localhost;Port=3306;Database=EAD;Uid=nms;Pwd=ye77owdre55</Value>
+    </Setting>
+    <Setting Name="Password" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ye77owdre55</Value>
+    </Setting>
+    <Setting Name="XMLLocation" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..\\..\\..\\SaveFile.xml</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -1,203 +1,325 @@
-﻿using System;
-using System.Linq;
-using System.Windows.Forms;
-using System.Xml.Linq;
-using EAD_Cwk2_EMoore_W1442006.Helpers;
-
-namespace EAD_Cwk2_EMoore_W1442006.Views
+﻿namespace EAD_Cwk2_EMoore_W1442006.Views
 {
+    using System;
+    using System.Windows.Forms;
+    using Controllers;
+    using DataAccess;
+    using Helpers;
+    using Models;
+
+    /// <summary>
+    /// An instance of <see cref="MainMenuForm"/> used to navigate to sub forms
+    /// </summary>
     public partial class MainMenuForm : Form
     {
         /// <summary>
-        /// The view for <see cref="Models.Payee"/>s
+        /// An instance of <see cref="DatabaseDataAccess"/> used to handle all database interactions
         /// </summary>
-        private PayeeViewForm PayeeView;
+        private static DatabaseDataAccess DA { get; } = new DatabaseDataAccess();
 
         /// <summary>
-        /// The view for <see cref="Models.Payer"/>s
+        /// An instance of <see cref="XmlDataAccess"/> used to handle all XML interactions
         /// </summary>
-        private Payer PayerView;
-        
-        /// <summary>
-        /// The view for <see cref="Models.Income"/>
-        /// </summary>
-        private IncomeView IncomeView;
+        private static XmlDataAccess XmlDA { get; } = new XmlDataAccess();
 
         /// <summary>
-        /// The view for <see cref="Models.Expense"/>
+        /// Initialises an instance of <see cref="MainMenuForm"/> view
         /// </summary>
-        private ExpenseView ExpenseView;
-
-        /// <summary>
-        /// The <see cref="Report"/> view
-        /// </summary>
-        private Report ReportView;
-
-        /// <summary>
-        /// The <see cref="Prediction"/> view
-        /// </summary>
-        private Prediction PredictionView;
-
         public MainMenuForm()
         {
             InitializeComponent();
-            this.balanceBox.Text = "£" + ListAccessHelper.Balance.ToString();
         }
 
+        /// <summary>
+        /// Handles navigating to a new <see cref="PayeeViewForm"/> view
+        /// </summary>
+        /// <param name="sender">The sender object</param>
+        /// <param name="e">Event arguments</param>
         private void ViewPayeeButton_Click(object sender, EventArgs e)
         {
-            if (this.PayeeView == null)
+            if (PayeeController.PayeeView == null)
             {
-                this.PayeeView = new PayeeViewForm();
-                this.PayeeView.FormClosed += this.PayeeViewOnFormClosed;
+                PayeeController.PayeeView = new PayeeViewForm();
+                PayeeController.PayeeView.FormClosed += this.PayeeViewOnFormClosed;
             }
 
-            this.PayeeView.Show(this);
+            PayeeController.PayeeView.Show(this);
             this.Hide();
         }
 
+        /// <summary>
+        /// Handles  a <see cref="PayeeViewForm"/> closing
+        /// </summary>
+        /// <param name="sender">The sender object</param>
+        /// <param name="e">Event arguments</param>
         private void PayeeViewOnFormClosed(object sender, FormClosedEventArgs e)
         {
-            this.PayeeView = null;
+            PayeeController.PayeeView = null;
             this.Show();
         }
 
+        /// <summary>
+        /// Handles navigating to a <see cref="PayerView"/> view
+        /// </summary>
+        /// <param name="sender">The sender object</param>
+        /// <param name="e">Event arguments</param>
         private void ViewPayersButton_Click(object sender, EventArgs e)
         {
-            if (this.PayerView == null)
+            if (PayerController.PayerView == null)
             {
-                this.PayerView = new Payer();
-                this.PayerView.FormClosed += this.PayerViewOnFormClosed;
+                PayerController.PayerView = new PayerView();
+                PayerController.PayerView.FormClosed += this.PayerViewOnFormClosed;
             }
 
-            this.PayerView.Show(this);
+            PayerController.PayerView.Show(this);
             this.Hide();
         }
 
+        /// <summary>
+        /// Handles closing a <see cref="PayerView"/> view
+        /// </summary>
+        /// <param name="sender">The sender object</param>
+        /// <param name="e">Event arguments</param>
         private void PayerViewOnFormClosed(object sender, FormClosedEventArgs e)
         {
-            this.PayerView = null;
+            PayerController.PayerView = null;
             this.Show();
         }
 
+        /// <summary>
+        /// Handles navigating to an <see cref="IncomeView"/> view
+        /// </summary>
+        /// <param name="sender">The sender object</param>
+        /// <param name="e">Event arguments</param>
         private void ViewIncomeButton_Click(object sender, EventArgs e)
         {
-            if (this.IncomeView == null)
+            if (IncomeController.IncomeView == null)
             {
-                this.IncomeView = new IncomeView();
-                this.IncomeView.FormClosed += this.IncomeViewOnFormClosed;
+                IncomeController.IncomeView = new IncomeView();
+                IncomeController.IncomeView.FormClosed += this.IncomeViewOnFormClosed;
             }
 
-            IncomeView.Show(this);
+            IncomeController.IncomeView.Show(this);
             this.Hide();
         }
 
+        /// <summary>
+        /// Handles a <see cref="IncomeView"/> closing
+        /// </summary>
+        /// <param name="sender">The sender object</param>
+        /// <param name="e">Event arguments</param>
         private void IncomeViewOnFormClosed(object sender, FormClosedEventArgs e)
         {
-            this.IncomeView = null;
+            IncomeController.IncomeView = null;
             this.Show();
         }
 
+        /// <summary>
+        /// Handles navigating to a <see cref="ExpenseView"/> view
+        /// </summary>
+        /// <param name="sender">The sender object</param>
+        /// <param name="e">Event arguments</param>
         private void ViewExpensesButton_Click(object sender, EventArgs e)
         {
-            if (this.ExpenseView == null)
+            if (ExpenseController.ExpenseView == null)
             {
-                this.ExpenseView = new ExpenseView();
-                this.ExpenseView.FormClosed += this.ExpenseViewOnFormClosed;
+                ExpenseController.ExpenseView = new ExpenseView();
+                ExpenseController.ExpenseView.FormClosed += this.ExpenseViewOnFormClosed;
             }
 
-            this.ExpenseView.Show(this);
+            ExpenseController.ExpenseView.Show(this);
             this.Hide();
         }
 
+        /// <summary>
+        /// Handles a <see cref="ExpenseView"/> closing
+        /// </summary>
+        /// <param name="sender">The sender object</param>
+        /// <param name="e">Event arguments</param>
         private void ExpenseViewOnFormClosed(object sender, FormClosedEventArgs e)
         {
-            this.ExpenseView = null;
+            ExpenseController.ExpenseView = null;
             this.Show();
         }
 
+        /// <summary>
+        /// Handles navigating to a <see cref="Report"/> view
+        /// </summary>
+        /// <param name="sender">The sender object</param>
+        /// <param name="e">Event arguments</param>
         private void ViewReportButton_Click(object sender, EventArgs e)
         {
-            if (this.ReportView == null)
+            if (ReportController.ReportView == null)
             {
-                this.ReportView = new Report();
-                this.ReportView.FormClosed += this.ReportViewOnFormClosed;
+                ReportController.ReportView = new Report();
+                ReportController.ReportView.FormClosed += this.ReportViewOnFormClosed;
             }
 
-            this.ReportView.Show(this);
+            ReportController.ReportView.Show(this);
             this.Hide();
         }
 
+        /// <summary>
+        /// Handles a <see cref="Report"/> view closing
+        /// </summary>
+        /// <param name="sender">The sender object</param>
+        /// <param name="e">Event arguments</param>
         private void ReportViewOnFormClosed(object sender, FormClosedEventArgs e)
         {
-            this.ReportView = null;
+            ReportController.ReportView = null;
             this.Show();
         }
 
+        /// <summary>
+        /// Handles navigating to a <see cref="Prediction"/> view
+        /// </summary>
+        /// <param name="sender">The sender object</param>
+        /// <param name="e">Event arguments</param>
         private void ViewPredictionButton_Click(object sender, EventArgs e)
         {
-            if (this.PredictionView == null)
+            if (PredictionController.PredictionView == null)
             {
-                this.PredictionView = new Prediction();
-                this.PredictionView.FormClosed += this.PredictionViewOnFormClosed;
+                PredictionController.PredictionView = new Prediction();
+                PredictionController.PredictionView.FormClosed += this.PredictionViewOnFormClosed;
             }
 
-            this.PredictionView.Show(this);
+            PredictionController.PredictionView.Show(this);
             this.Hide();
         }
 
+        /// <summary>
+        /// Handles a <see cref="Prediction"/> view closing
+        /// </summary>
+        /// <param name="sender">The sender object</param>
+        /// <param name="e">Event arguments</param>
         private void PredictionViewOnFormClosed(object sender, FormClosedEventArgs e)
         {
-            this.PredictionView = null;
+            PredictionController.PredictionView = null;
             this.Show();
         }
 
-        private void SaveButton_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Handles a <see cref="MainMenu"/> being shown
+        /// </summary>
+        /// <param name="sender">The sender object</param>
+        /// <param name="e">Event arguments</param>
+        private void MainMenuForm_Shown(object sender, EventArgs e)
         {
-            var payers = new XElement("Payers", ListAccessHelper.PayerList.Select(payer =>
-                new XElement("payer",
-                    new XAttribute("Id", payer.Id),
-                    new XAttribute("Name", payer.Name),
-                    new XAttribute("Type", payer.PaymentType))));
+            CalculateBalance();
+            this.balanceBox.Text = ListAccessHelper.Balance.ToString("C");
+        }
 
-            var payees = new XElement("Payees", ListAccessHelper.PayeeList.Select(payee =>
-                    new XElement("payee",
-                        new XAttribute("Id", payee.Id),
-                        new XAttribute("Name", payee.Name),
-                        new XAttribute("AccNumber", payee.AccNumber),
-                        new XAttribute("SortCode", payee.AccNumber),
-                        new XAttribute("Address", payee.Address))));
+        /// <summary>
+        /// Calculates the current balance based on <see cref="Expense"/> and <see cref="Income"/> records
+        /// </summary>
+        private static void CalculateBalance()
+        {
+            var nonRecurringIncome = 0.00m;
+            var recurringIncome = 0.00m;
+            var nonRecurringExpense = 0.00m;
+            var recurringExpense = 0.00m;
 
-            var incomes = new XElement("Incomes", ListAccessHelper.IncomeList.Select(income =>
-                new XElement("income",
-                    new XAttribute("Id", income.Id),
-                    new XAttribute("Amount", income.Amount),
-                    new XAttribute("InitialDate", income.InitialPaidDate),
-                    new XAttribute("Interval", income.Interval),
-                    new XAttribute("IsRecurring", income.IsRecurring),
-                    new XAttribute("LastPaidDate", income.LastPaidDate),
-                    new XAttribute("Reference", income.Ref),
-                    new XAttribute("Payer", income.Payer.Id))));
+            for (var index = 0; index < ListAccessHelper.IncomeList.Count; index++)
+            {
+                var income = ListAccessHelper.IncomeList[index];
+                if (income.InitialPaidDate > DateTime.UtcNow)
+                {
+                    continue;
+                }
 
-            var expenses = new XElement("Expenses", ListAccessHelper.ExpenseList.Select(expense =>
-                new XElement("expense",
-                    new XAttribute("Id", expense.Id),
-                    new XAttribute("Amount", expense.Amount),
-                    new XAttribute("InitialDate", expense.InitialPaidDate),
-                    new XAttribute("Interval", expense.Interval),
-                    new XAttribute("IsRecurring", expense.IsRecurring),
-                    new XAttribute("LastPaidDate", expense.LastPaidDate),
-                    new XAttribute("Reference", expense.Ref),
-                    new XAttribute("Payer", expense.Payee.Id))));
+                if (income.IsRecurring)
+                {
+                    recurringIncome += CalculateRecurringIncome(income);
+                    ListAccessHelper.IncomeList[ListAccessHelper.IncomeList.IndexOf(income)] = income;
+                    DA.EditIncome(income, income.Id);
+                }
+                else
+                {
+                    nonRecurringIncome += CalculateIncome(income);
+                }
+            }
 
-            var saveData = new XElement("Data",
-                payers,
-                payees,
-                incomes,
-                expenses
-                );
+            for (var index = 0; index < ListAccessHelper.ExpenseList.Count; index++)
+            {
+                var expense = ListAccessHelper.ExpenseList[index];
+                if (expense.InitialPaidDate > DateTime.UtcNow)
+                {
+                    continue;
+                }
 
-            saveData.Save("C:\\Users\\Elliot\\Documents\\SaveFile.xml");
+                if (expense.IsRecurring)
+                {
+                    recurringExpense += CalculateRecurringExpense(expense);
+                    ListAccessHelper.ExpenseList[ListAccessHelper.ExpenseList.IndexOf(expense)] = expense;
+                    DA.EditExpense(expense, expense.Id);
+                }
+                else
+                {
+                    nonRecurringExpense += CalculateExpense(expense);
+                }
+            }
+
+            ListAccessHelper.IncrementBalance(recurringIncome);
+            ListAccessHelper.IncrementBalance(nonRecurringIncome);
+            ListAccessHelper.DecrementBalance(recurringExpense);
+            ListAccessHelper.DecrementBalance(nonRecurringExpense);
+
+            XmlDA.SaveXml();
+        }
+
+        /// <summary>
+        /// Calculates recurring expenses before today
+        /// </summary>
+        /// <param name="expense">The expense to calculate</param>
+        /// <returns>A decimal value of the expense total</returns>
+        private static decimal CalculateRecurringExpense(Expense expense)
+        {
+            var days = (DateTime.UtcNow - expense.InitialPaidDate).Days;
+            var payments = (days / expense.Interval) + 1;
+            var paymentAmount = payments * expense.Amount;
+            var remainder = days % expense.Interval;
+            var lastPaid = DateTime.UtcNow.AddDays(-remainder);
+            expense.LastPaidDate = lastPaid;
+
+            return paymentAmount;
+        }
+
+        /// <summary>
+        /// Calculates non recurring expenses before today
+        /// </summary>
+        /// <param name="expense">The expense to calculate</param>
+        /// <returns>A decimal value of the expense total</returns>
+        private static decimal CalculateExpense(Expense expense)
+        {
+            return expense.Amount;
+        }
+
+        /// <summary>
+        /// Calculates recurring incomes before today
+        /// </summary>
+        /// <param name="income">The income to calculate</param>
+        /// <returns>A decimal value of the income total</returns>
+        private static decimal CalculateRecurringIncome(Income income)
+        {
+            var days = (DateTime.UtcNow - income.InitialPaidDate).Days;
+            var payments = (days / income.Interval) + 1;
+            var paymentAmount = payments * income.Amount;
+
+            var remainder = days % income.Interval;
+            var lastPaid = DateTime.UtcNow.AddDays(-remainder);
+            income.LastPaidDate = lastPaid;
+
+            return paymentAmount;
+        }
+
+        /// <summary>
+        /// Calculates non recurring incomes before today
+        /// </summary>
+        /// <param name="income">The income to calculate</param>
+        /// <returns>A decimal value of the income total</returns>
+        private static decimal CalculateIncome(Income income)
+        {
+            return income.Amount;
         }
     }
 }

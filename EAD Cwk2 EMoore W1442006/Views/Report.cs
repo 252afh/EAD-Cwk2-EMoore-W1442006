@@ -1,19 +1,21 @@
-﻿using System;
-using System.Windows.Forms;
-
-namespace EAD_Cwk2_EMoore_W1442006.Views
+﻿namespace EAD_Cwk2_EMoore_W1442006.Views
 {
+    using Controllers;
+    using System.Windows.Forms;
+
+    /// <summary>
+    /// An instance of a <see cref="Report"/> view
+    /// </summary>
     public partial class Report : Form
     {
+        /// <summary>
+        /// Initialises a new <see cref="Report"/> view
+        /// </summary>
         public Report()
         {
             InitializeComponent();
-        }
-
-        private void BackButton_Click(object sender, EventArgs e)
-        {
-            this.Owner.Show();
-            this.Close();
+            this.BackButton.Click += ReportController.ViewBackButtonClick;
+            this.Shown += ReportController.ReportShown;
         }
     }
 }

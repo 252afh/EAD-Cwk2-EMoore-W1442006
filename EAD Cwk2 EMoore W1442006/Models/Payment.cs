@@ -1,8 +1,11 @@
-﻿using System;
-using System.Xml.Serialization;
-
-namespace EAD_Cwk2_EMoore_W1442006.Models
+﻿namespace EAD_Cwk2_EMoore_W1442006.Models
 {
+    using System;
+    using System.Xml.Serialization;
+
+    /// <summary>
+    /// An instance of <see cref="Payment"/> used to store shared properties of <see cref="Income"/> and <see cref="Expense"/> objects
+    /// </summary>
     [Serializable()]
     public class Payment
     {

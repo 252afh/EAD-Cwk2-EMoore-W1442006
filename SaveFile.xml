@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Data>
+  <Payers>
+    <payer Id="ca046f25-78fc-4b76-9f2a-78ba0175d617" Name="payer1" Type="wages" />
+  </Payers>
+  <Payees />
+  <Incomes>
+    <income Id="d8bf6c36-6419-450f-891d-ecbb4702e0ea" Amount="40.00" InitialDate="2018-11-20T17:34:39.7336005+00:00" Interval="0" IsRecurring="false" LastPaidDate="0001-01-01T00:00:00" Reference="ref1" Payer="ca046f25-78fc-4b76-9f2a-78ba0175d617" />
+  </Incomes>
+  <Expenses />
+</Data>
