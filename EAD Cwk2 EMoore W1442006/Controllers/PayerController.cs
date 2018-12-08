@@ -64,7 +64,7 @@
 
             var index = PayersEdit.PayerCombobox.SelectedIndex;
 
-            DA.EditPayer(editedPayer, EditedPayer.Id);
+            // DA.EditPayer(editedPayer, EditedPayer.Id);
             ListAccessHelper.PayerList[index] = editedPayer;
             XmlDA.SaveXml();
             return true;
@@ -185,7 +185,7 @@
                 PaymentType = paymentType
             };
 
-            DA.InsertPayer(payer);
+            // DA.InsertPayer(payer);
             ListAccessHelper.PayerList.Add(payer);
             XmlDA.SaveXml();
             return true;
@@ -356,7 +356,7 @@
 
                     ListAccessHelper.PayerList.Remove(payer);
                     XmlDA.SaveXml();
-                    DA.DeletePayer(payerId);
+                    // DA.DeletePayer(payerId);
                     PopulateListView();
                 }
             }

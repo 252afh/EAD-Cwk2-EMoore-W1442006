@@ -231,7 +231,7 @@
                 {
                     recurringIncome += CalculateRecurringIncome(income);
                     ListAccessHelper.IncomeList[ListAccessHelper.IncomeList.IndexOf(income)] = income;
-                    DA.EditIncome(income, income.Id);
+                    // DA.EditIncome(income, income.Id);
                 }
                 else
                 {
@@ -251,7 +251,7 @@
                 {
                     recurringExpense += CalculateRecurringExpense(expense);
                     ListAccessHelper.ExpenseList[ListAccessHelper.ExpenseList.IndexOf(expense)] = expense;
-                    DA.EditExpense(expense, expense.Id);
+                    // DA.EditExpense(expense, expense.Id);
                 }
                 else
                 {

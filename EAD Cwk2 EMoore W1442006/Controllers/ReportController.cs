@@ -58,7 +58,7 @@ namespace EAD_Cwk2_EMoore_W1442006.Controllers
 
             try
             {
-                 incomeList = DA.GetIncomes().Result;
+                 // incomeList = DA.GetIncomes().Result;
             }
             catch (Exception ex)
             {
@@ -100,7 +100,7 @@ namespace EAD_Cwk2_EMoore_W1442006.Controllers
 
             try
             {
-                expenseList = DA.GetExpenses().Result;
+                // expenseList = DA.GetExpenses().Result;
             }
             catch(Exception ex)
             {
@@ -139,9 +139,10 @@ namespace EAD_Cwk2_EMoore_W1442006.Controllers
         private static void CalculateIncomeCount()
         {
             var incomes = 0;
+
             try
             {
-                incomes = DA.GetIncomes().Result.Count;
+                // incomes = DA.GetIncomes().Result.Count;
             }
             catch (Exception ex)
             {
@@ -160,7 +161,7 @@ namespace EAD_Cwk2_EMoore_W1442006.Controllers
 
             try
             {
-                expenseCount = DA.GetExpenses().Result.Count;
+                // expenseCount = DA.GetExpenses().Result.Count;
             }
             catch (Exception ex)
             {

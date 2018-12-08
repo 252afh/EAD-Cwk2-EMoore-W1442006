@@ -290,7 +290,7 @@
 
             var index = ListAccessHelper.IncomeList.IndexOf(EditIncome);
 
-            DA.EditIncome(editedIncome, EditIncome.Id);
+            // DA.EditIncome(editedIncome, EditIncome.Id);
             ListAccessHelper.IncomeList[index] = editedIncome;
             XmlDA.SaveXml();
             return true;
@@ -435,7 +435,7 @@
                 Payer = payer
             };
 
-            DA.InsertIncome(income);
+            // DA.InsertIncome(income);
             ListAccessHelper.IncomeList.Add(income);
             XmlDA.SaveXml();
             return true;
@@ -488,7 +488,7 @@
 
                     ListAccessHelper.IncomeList.Remove(income);
                     XmlDA.SaveXml();
-                    DA.DeleteIncome(incomeId);
+                    // DA.DeleteIncome(incomeId);
                     PopulateListView();
                 }
             }

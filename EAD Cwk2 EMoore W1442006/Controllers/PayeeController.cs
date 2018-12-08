@@ -205,7 +205,7 @@
                 SortCode = sortCode
             };
 
-            DA.InsertPayee(payee);
+            // DA.InsertPayee(payee);
             ListAccessHelper.PayeeList.Add(payee);
             XmlDA.SaveXml();
             return true;
@@ -330,7 +330,7 @@
 
             var selectedIndex = PayeeEdit.PayeeCombobox.SelectedIndex;
 
-            DA.EditPayee(editedPayee, editedPayee.Id);
+            // DA.EditPayee(editedPayee, editedPayee.Id);
             ListAccessHelper.PayeeList[selectedIndex] = editedPayee;
             XmlDA.SaveXml();
             return true;
@@ -382,7 +382,7 @@
 
                     ListAccessHelper.PayeeList.Remove(payee);
                     XmlDA.SaveXml();
-                    DA.DeletePayee(payeeId);
+                    // DA.DeletePayee(payeeId);
                     PopulateListView();
                 }
             }

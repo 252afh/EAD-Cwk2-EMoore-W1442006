@@ -293,7 +293,7 @@
 
             var index = ListAccessHelper.ExpenseList.IndexOf(editedExpense);
 
-            DA.EditExpense(editedExpense, editedExpense.Id);
+            // DA.EditExpense(editedExpense, editedExpense.Id);
             ListAccessHelper.ExpenseList[index] = editedExpense;
             XmlDA.SaveXml();
             return true;
@@ -413,7 +413,7 @@
                 Payee = payee
             };
 
-            DA.InsertExpense(expense);
+            // DA.InsertExpense(expense);
             ListAccessHelper.ExpenseList.Add(expense);
             XmlDA.SaveXml();
             return true;
@@ -487,7 +487,7 @@
                     
                     ListAccessHelper.ExpenseList.Remove(expense);
                     XmlDA.SaveXml();
-                    DA.DeleteExpense(expenseId);
+                    // DA.DeleteExpense(expenseId);
                     PopulateListView();
                 }
             }
